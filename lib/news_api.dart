@@ -5,7 +5,7 @@ import 'package:newsappwassim/model.dart';
 
 Future<List<NewsApiModel>> getNews() async {
   Uri uri = Uri.parse(
-      "https://newsapi.org/v2/top-headlines?country=fr&apiKey=56673b513f424d3e9d4ce0afc8293687");
+      "https://newsapi.org/v2/top-headlines?sources=google-news-fr&apiKey=56673b513f424d3e9d4ce0afc8293687");
 
   final response = await http.get(uri);
 

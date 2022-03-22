@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
+import 'package:newsappwassim/model.dart';
+import 'package:newsappwassim/news_api.dart';
 import 'package:newsappwassim/values.dart';
 
 class NewsCarousel extends StatelessWidget {
@@ -28,8 +29,8 @@ class NewsCarousel extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
                       newsItem.image,
-                      fit: BoxFit.contain,
-                      height: 150,
+                      fit: BoxFit.cover,
+                     
                     ),
                   ),
                   Container(
@@ -64,4 +65,5 @@ class NewsCarousel extends StatelessWidget {
       }).toList(),
     );
   }
+  
 }

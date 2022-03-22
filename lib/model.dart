@@ -1,8 +1,9 @@
 class NewsApiModel {
-  String title, imageUrl, content, description,publishedAt,author;
+  String title, imageUrl, content, description,publishedAt,author,url;
 
   NewsApiModel(
       {required this.title,
+      required this.url,
       required this.description,
       required this.content,
        required this.publishedAt,
@@ -13,6 +14,7 @@ class NewsApiModel {
     return NewsApiModel(
       title: jsonData['title'] ?? "",
       description: jsonData['description'] ?? "",
+      url: jsonData['url'] ?? "",
       publishedAt: jsonData['publishedAt'] ?? "",
       content: jsonData['content'] ?? "",
       author: jsonData['author'] ?? "",

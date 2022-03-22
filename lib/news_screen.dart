@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/model.dart';
 import 'package:newsappwassim/const.dart';
+import 'package:newsappwassim/const.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class ReadingNews extends StatelessWidget {
   final NewsApiModel model;
@@ -13,13 +16,17 @@ class ReadingNews extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: getColors[1],
-        body: Container(
-          height: size.height,
-          width: size.width,
-          child: SingleChildScrollView(
-            child: Column(
+        appBar: AppBar(
+        //ici je code mon app bar qui me redirige vers mon drawer
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        title: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Align(
+                Container(
+                  child: Align(
                   alignment: Alignment.centerLeft,
                   child: IconButton(
                     onPressed: () => Navigator.pop(context),
@@ -29,13 +36,29 @@ class ReadingNews extends StatelessWidget {
                     ),
                   ),
                 ),
+                ),
+                Container(
+                  child: Text("Wassim News App",
+                      style: TextStyle(fontSize: 15, color: Colors.black)),
+                ),
+              ],
+            )),
+        titleSpacing: 0,
+      ),
+        body: Container(
+          height: size.height,
+          width: size.width,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+               
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10),
                   width: size.width / 1.05,
                   child: Text(
                     model.title,
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.blue,
                       fontSize: 28,
                       fontWeight: FontWeight.w500,
                     ),
@@ -69,6 +92,19 @@ class ReadingNews extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
+                ),
+                SizedBox(height: 10,),
+                 Container(
+                  width: size.width / 1.05,
+                  child: Text(
+                   "Pour lire la suite de l'article allez sur " +  model.url,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  
                 ),
               ],
             ),

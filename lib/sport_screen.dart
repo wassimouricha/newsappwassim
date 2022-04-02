@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/const.dart';
-import 'package:newsappwassim/model.dart';
-import 'package:newsappwassim/news_api.dart';
-import 'package:newsappwassim/news_screen.dart';
-import 'package:newsappwassim/sport_screen.dart';
+import 'package:newsappwassim/modelsport.dart';
+import 'package:newsappwassim/sport_api.dart';
+import 'package:newsappwassim/sport_screened.dart';
+import 'package:newsappwassim/home_screen.dart';
 import 'package:newsappwassim/newscarousel.dart';
 import 'package:newsappwassim/messageac.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/user_page.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class SportScreen extends StatefulWidget {
+  const SportScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _SportScreenState createState() => _SportScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  List<NewsApiModel>? newsList;
+class _SportScreenState extends State<SportScreen> {
+  List<SportApiModel>? sportList;
   bool isLoading = true;
   var currentIndex = 0;
 
@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
     getNews().then((value) {
       setState(() {
         if (value.isNotEmpty) {
-          newsList = value;
+          sportList = value;
           isLoading = false;
         } else {
           print("La liste est vide");
@@ -75,26 +75,22 @@ class _HomeScreenState extends State<HomeScreen> {
         titleSpacing: 0,
       ),
       drawer: const NavigationDrawer(),
-      body: 
-      
-      Container(
-       
+      body: Container(
         height: size.height,
         width: size.width,
         child: Column(
-          
           children: [
-             ExpansionTile(title: Text('Général',
+              ExpansionTile(title: Text('Sport',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         
         ),
         
         children: [
-          ListTile(title: Text('Sport',
+          ListTile(title: Text('Général',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         ),
         onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => SportScreen())),
+                MaterialPageRoute(builder: (context) => HomeScreen())),
         )
         ],
         ),
@@ -105,7 +101,6 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 10,
             ),
-            NewsCarousel(),
             SizedBox(
               height: 10,
             ),
@@ -118,9 +113,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 : Expanded(
                     child: Container(
                       child: ListView.builder(
-                        itemCount: newsList!.length,
+                        itemCount: sportList!.length,
                         itemBuilder: (context, index) {
-                          return listItems(size, newsList![index]);
+                          return listItems(size, sportList![index]);
                         },
                       ),
                     ),
@@ -131,13 +126,13 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget listItems(Size size, NewsApiModel model) {
+  Widget listItems(Size size, SportApiModel model) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => ReadingNews(
+            builder: (_) => Readingsport(
               model: model,
             ),
           ),

@@ -4,8 +4,9 @@ import 'package:newsappwassim/model.dart';
 import 'package:newsappwassim/news_api.dart';
 import 'package:newsappwassim/news_screen.dart';
 import 'package:newsappwassim/newscarousel.dart';
-import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/messageac.dart';
+import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
+import 'package:newsappwassim/user_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -72,67 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
             )),
         titleSpacing: 0,
       ),
-      drawer: Drawer(
-        //contenu du tiroir lorsque le bouton menu est appuyé
-        child: Column(
-          children: [
-            SizedBox(height: 30),
-            DrawerHeader(
-                child: Container(
-                    height: 140,
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset("image/dailybuggle.png"))),
-            SizedBox(height: 20),
-            Text("Profil",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
-            SizedBox(height: 45),
-            Text("Réglages",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
-            SizedBox(height: 45),
-            Text("A propos",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
-            SizedBox(height: 45),
-            Text("Déconnexion",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
-            SizedBox(height: 45),
-            Material(
-              borderRadius: BorderRadius.circular(500),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(500),
-                splashColor: Colors.red,
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.red,
-                  child: Icon(Icons.arrow_back, color: Colors.white),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: 65,
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.black,
-                  child: Center(
-                    //premet de mettre l'enfant du widget et donc ce qu'il y à a l'interieur au centre
-                    child: Text(
-                      "v1.0.1",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      drawer: const NavigationDrawer(),
       body: Container(
         height: size.height,
         width: size.width,
@@ -141,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 10,
             ),
-            welcomeWidget(),
+            WelcomeWidget(),
             SizedBox(
               height: 10,
             ),
@@ -167,40 +108,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
           ],
         ),
-      ),
-      
-      bottomNavigationBar: BubbleBottomBar(
-        opacity: .2,
-        currentIndex: currentIndex,
-        onTap: changePage,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-        elevation: 8,
-
-        hasNotch: true, //new
-        items: <BubbleBottomBarItem>[
-          BubbleBottomBarItem(
-              backgroundColor: Color.fromARGB(255, 255, 17, 0),
-              icon: Icon(
-                Icons.home,
-                color: Colors.black,
-              ),
-              activeIcon: Icon(
-                Icons.home_filled,
-                color: Color.fromARGB(255, 255, 17, 0),
-              ),
-              title: Text("Accueil")),
-          BubbleBottomBarItem(
-              backgroundColor: Color.fromARGB(255, 76, 135, 175),
-              icon: Icon(
-                Icons.contacts,
-                color: Colors.black,
-              ),
-              activeIcon: Icon(
-                Icons.contacts,
-                color: Color.fromARGB(255, 76, 135, 175),
-              ),
-              title: Text("Utilisateur"))
-        ],
       ),
     );
   }
@@ -289,3 +196,134 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+//mon drawer = ma sidebar
+
+class NavigationDrawer extends StatelessWidget {
+  const NavigationDrawer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Drawer(
+        child: SingleChildScrollView(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            buildHeader(context),
+            buildMenuItems(context),
+          ],
+        )),
+      );
+}
+
+//le widget du header du drawer/sidebar
+Widget buildHeader(BuildContext context) => Material(
+      color: Colors.blue,
+      child: InkWell(
+        onTap: () {
+          //pour fermer le navigation drawer
+          Navigator.pop(context);
+          //pour rediriger vers la page
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const UserPage(),
+          ));
+        },
+        child: Container(
+          padding: EdgeInsets.only(
+            top: 24 + MediaQuery.of(context).padding.top,
+            bottom: 24,
+          ),
+          child: Column(
+            children: [
+              CircleAvatar(
+                radius: 52,
+                backgroundImage: NetworkImage(
+                    'https://media-exp1.licdn.com/dms/image/D4E03AQHKyal9OiD12g/profile-displayphoto-shrink_800_800/0/1648624925960?e=2147483647&v=beta&t=NimRdFpaBcn7mrK3Abem2USfCRhEsZ8K7-h8NAQ9xYY'),
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Text(
+                "Wassim Bouricha",
+                style: TextStyle(fontSize: 25, color: Colors.white),
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Text(
+                "wbouricha5@gmail.com",
+                style: TextStyle(fontSize: 15, color: Colors.white),
+              ),
+              SizedBox(
+                height: 12,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+//le widget du menu du drawer/sidebar
+Widget buildMenuItems(BuildContext context) => Container(
+      
+      child: Wrap(
+        runSpacing: 16, //espace vertical
+        children: [
+          ListTile(
+            leading: const Icon(Icons.home_outlined),
+            title: const Text(
+                'Accueil'), //je peux remplacement pushreplacement par push pour avoir le bouton en haut a gauche pour revenir
+            //il faut cependant ajouter Navigator.pop(context); pour que le drawer se ferme lorsque l'on va revenir sur la page
+            onTap: () => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => HomeScreen())),
+          ),
+          ListTile(
+            leading: const Icon(Icons.login),
+            title: const Text('Connexion'),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.favorite_border),
+            title: const Text('Notifications'),
+            onTap: () {},
+          ),
+            InkWell(
+                borderRadius: BorderRadius.circular(500),
+                splashColor: Colors.blue,
+                onTap: () {
+                  //pour fermer le drawer
+                  Navigator.of(context).pop();
+                },
+                child: Center(
+                  child: CircleAvatar(
+                  radius: 20,
+                  backgroundColor: Colors.blue,
+                  child: Icon(Icons.arrow_back, color: Colors.white),
+                ),
+              ),),
+          // const Divider(
+          //   color: Colors.black,
+          // ),
+          SizedBox(height: 215,),
+          Expanded(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  height: 65,
+                  width: MediaQuery.of(context).size.width,
+                  color: Colors.black,
+                  child: Center(
+                    //premet de mettre l'enfant du widget et donc ce qu'il y à a l'interieur au centre
+                    child: Text(
+                      "v1.0.3",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );

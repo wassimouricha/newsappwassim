@@ -218,14 +218,14 @@ class NavigationDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Drawer(
-        child: SingleChildScrollView(
+       
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             buildHeader(context),
             buildMenuItems(context),
           ],
-        )),
+        ),
       );
 }
 
@@ -317,7 +317,7 @@ Widget buildMenuItems(BuildContext context) => Container(
           // const Divider(
           //   color: Colors.black,
           // ),
-          SizedBox(height: 215,),
+         
           Expanded(
               child: Align(
                 alignment: Alignment.bottomCenter,

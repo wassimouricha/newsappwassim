@@ -105,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 10,
             ),
-            NewsCarousel(),
+            // NewsCarousel(),
             SizedBox(
               height: 10,
             ),
@@ -223,14 +223,14 @@ class NavigationDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Drawer(
-        child: SingleChildScrollView(
-            child: Column(
+        child: 
+            Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             buildHeader(context),
             buildMenuItems(context),
           ],
-        )),
+        ),
       );
 }
 
@@ -319,30 +319,29 @@ Widget buildMenuItems(BuildContext context) => Container(
                   child: Icon(Icons.arrow_back, color: Colors.white),
                 ),
               ),),
-          // const Divider(
-          //   color: Colors.black,
-          // ),
-          SizedBox(height: 215,),
-          Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: 65,
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.black,
-                  child: Center(
-                    //premet de mettre l'enfant du widget et donc ce qu'il y à a l'interieur au centre
-                    child: Text(
-                      "v1.0.3",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+          const Divider(
+            color: Colors.black,
+          ),
+          // Expanded(
+          //     child: Align(
+          //       alignment: Alignment.bottomCenter,
+          //       child: Container(
+          //         height: 65,
+          //         width: MediaQuery.of(context).size.width,
+          //         color: Colors.black,
+          //         child: Center(
+          //           //premet de mettre l'enfant du widget et donc ce qu'il y à a l'interieur au centre
+          //           child: Text(
+          //             "v1.0.3",
+          //             style: TextStyle(
+          //                 fontSize: 20,
+          //                 fontWeight: FontWeight.w600,
+          //                 color: Colors.white),
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   ),
         ],
       ),
     );

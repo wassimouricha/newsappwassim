@@ -170,16 +170,17 @@ class _SportScreenState extends State<SportScreen> {
                   ),
                 ),
               ),
-              Container(
-                width: size.width / 1.1,
-                padding: EdgeInsets.symmetric(vertical: 5),
-                child: Text(
-                  model.description,
-                  style: TextStyle(
-                    fontSize: 13,
-                  ),
-                ),
-              ),
+              //container de la description
+              // Container(
+              //   width: size.width / 1.1,
+              //   padding: EdgeInsets.symmetric(vertical: 5),
+              //   child: Text(
+              //     model.description,
+              //     style: TextStyle(
+              //       fontSize: 13,
+              //     ),
+              //   ),
+              // ),
               Container(
                   //Mon container pour la partie date de publication en bas à droite
                   width: size.width / 1.1,

@@ -13,7 +13,9 @@ class ReadingNews extends StatelessWidget {
     
       //ma fon,ction pour ouvrir le site de l'article
     void _launchURL() async {
-    if (!await launch(model.url)) throw 'Impossible de lancer $model.url';
+    if (!await launch(model.url,
+      forceWebView: true,
+      enableJavaScript: true,)) throw 'Impossible de lancer $model.url';
   }
 
   @override
@@ -63,7 +65,7 @@ class ReadingNews extends StatelessWidget {
                   child: Text(
                     model.title,
                     style: TextStyle(
-                      color: Colors.blue,
+                      color: Color.fromARGB(255, 0, 0, 0),
                       fontSize: 25,
                       fontWeight: FontWeight.w500,
                     ),
@@ -88,7 +90,7 @@ class ReadingNews extends StatelessWidget {
                         ),
                 ),
                 SizedBox(height: 10,),
-                Container(
+                 Container(
                   width: size.width / 1.05,
                   child: Text(
                     getTruncatedContent(model.content,200),
@@ -99,25 +101,32 @@ class ReadingNews extends StatelessWidget {
                     ),
                   ),
                 ),
+                       
                 SizedBox(
                   height: 10,
                 ),
+                
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children:[
                 Container(
                   width: size.width / 1.05,
-                  child:RichText(
+                  child:
+                  RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(children: [
                       const TextSpan(
                         text: "Pour lire la suite de l'article  ",
-                        style: TextStyle(fontSize: 15,
+                        style: TextStyle(fontSize: 18,
+                        color: Colors.black,
                       fontWeight: FontWeight.w500,),
                       ),
                       TextSpan(
                           text: "Cliquez ici",
                           style: const TextStyle(
-                            fontSize: 15,
+                            fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            color: Colors.blue,
+                            color: Colors.red,
                             decoration: TextDecoration.underline,
                           ),
                           recognizer: TapGestureRecognizer()
@@ -127,6 +136,8 @@ class ReadingNews extends StatelessWidget {
                 ]),
             ),
           ),
+                ],),
+              
               ],),
       ),
     ),

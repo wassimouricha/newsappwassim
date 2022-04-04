@@ -86,7 +86,7 @@ class Readingsport extends StatelessWidget {
                 Container(
                   width: size.width / 1.05,
                   child: Text(
-                    model.content,
+                   getTruncatedContent(model.content,200),
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 20,
@@ -113,5 +113,10 @@ class Readingsport extends StatelessWidget {
         ),
       ),
     );
+  }
+   String getTruncatedContent(String text, int truncatedNumber) {
+    return text.length > truncatedNumber
+        ? text.substring(0, truncatedNumber) + "..."
+        : text;
   }
 }

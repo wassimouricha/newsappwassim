@@ -4,7 +4,6 @@ import 'package:newsappwassim/const.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class ReadingNews extends StatelessWidget {
   final NewsApiModel model;
 
@@ -17,41 +16,40 @@ class ReadingNews extends StatelessWidget {
       child: Scaffold(
         backgroundColor: getColors[1],
         appBar: AppBar(
-        //ici je code mon app bar qui me redirige vers l'accueil
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        title: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.black,
+          //ici je code mon app bar qui me redirige vers l'accueil
+          backgroundColor: Colors.white,
+          automaticallyImplyLeading: false,
+          title: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-                ),
-                Container(
-                  child: Text("Wassim News App",
-                      style: TextStyle(fontSize: 15, color: Colors.black)),
-                ),
-              ],
-            )),
-        titleSpacing: 0,
-      ),
+                  Container(
+                    child: Text("Wassim News App",
+                        style: TextStyle(fontSize: 15, color: Colors.black)),
+                  ),
+                ],
+              )),
+          titleSpacing: 0,
+        ),
         body: Container(
           height: size.height,
           width: size.width,
           child: SingleChildScrollView(
             child: Column(
               children: [
-               
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10),
                   width: size.width / 1.05,
@@ -85,7 +83,7 @@ class ReadingNews extends StatelessWidget {
                 Container(
                   width: size.width / 1.05,
                   child: Text(
-                    model.content,
+                    getTruncatedContent(model.content,200),
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 20,
@@ -93,18 +91,19 @@ class ReadingNews extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 10,),
-                 Container(
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
                   width: size.width / 1.05,
                   child: Text(
-                   "Pour lire la suite de l'article allez sur " +  model.url,
+                    "Pour lire la suite de l'article allez sur " + model.url,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 10,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  
                 ),
               ],
             ),
@@ -112,5 +111,11 @@ class ReadingNews extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String getTruncatedContent(String text, int truncatedNumber) {
+    return text.length > truncatedNumber
+        ? text.substring(0, truncatedNumber) + "..."
+        : text;
   }
 }

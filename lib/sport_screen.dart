@@ -190,7 +190,7 @@ class _SportScreenState extends State<SportScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        ("Auteur: ") + model.author,
+                        ("Auteur: ") + getTruncatedContent(model.author,20),
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey[600],
@@ -210,6 +210,12 @@ class _SportScreenState extends State<SportScreen> {
         ),
       ),
     );
+  }
+      //fonction permettant de mettre des pointillé afin de ne pas mettre tout le texte et donc pas d'overflow
+  String getTruncatedContent(String text, int truncatedNumber) {
+    return text.length > truncatedNumber
+        ? text.substring(0, truncatedNumber) + "..."
+        : text;
   }
 }
 

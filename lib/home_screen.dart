@@ -108,7 +108,6 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 10,
             ),
-            // NewsCarousel(),
             SizedBox(
               height: 10,
             ),
@@ -135,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget listItems(Size size, NewsApiModel model) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(
@@ -145,13 +144,16 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        child: Container(
+        child: 
+        Container(
           padding: EdgeInsets.only(bottom: 10),
           width: size.width / 1.15,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10), color: Colors.grey[200]),
           child: Column(
             children: [
+             
+              
               Container(
                 //le container de mon image
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -196,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        ("Auteur: ") + model.author,
+                        ("Auteur: ") + getTruncatedContent(model.author,20),
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey[600],
@@ -216,6 +218,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+   String getTruncatedContent(String text, int truncatedNumber) {
+    return text.length > truncatedNumber
+        ? text.substring(0, truncatedNumber) + "..."
+        : text;
   }
 }
 

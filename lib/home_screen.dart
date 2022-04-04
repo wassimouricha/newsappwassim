@@ -8,6 +8,7 @@ import 'package:newsappwassim/newscarousel.dart';
 import 'package:newsappwassim/messageac.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/user_page.dart';
+import 'package:newsappwassim/loginpage.dart';
 
 
 
@@ -298,14 +299,15 @@ Widget buildMenuItems(BuildContext context) => Container(
                 MaterialPageRoute(builder: (context) => HomeScreen())),
           ),
           ListTile(
-            leading: const Icon(Icons.login),
-            title: const Text('Connexion'),
-            onTap: () {},
-          ),
-          ListTile(
             leading: const Icon(Icons.favorite_border),
             title: const Text('Notifications'),
             onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.login),
+            title: const Text('Connexion'),
+            onTap: () => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => Login())),
           ),
             InkWell(
                 borderRadius: BorderRadius.circular(500),

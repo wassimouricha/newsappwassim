@@ -17,7 +17,7 @@ class ReadingNews extends StatelessWidget {
       child: Scaffold(
         backgroundColor: getColors[1],
         appBar: AppBar(
-        //ici je code mon app bar qui me redirige vers mon drawer
+        //ici je code mon app bar qui me redirige vers l'accueil
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         title: Padding(

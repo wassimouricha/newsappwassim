@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/const.dart';
-import 'package:newsappwassim/modelsport.dart';
-import 'package:newsappwassim/sport_api.dart';
-import 'package:newsappwassim/sport_screened.dart';
-import 'package:newsappwassim/home_screen.dart';
+import 'package:newsappwassim/model.dart';
+import 'package:newsappwassim/news_api.dart';
+import 'package:newsappwassim/news_screen.dart';
+import 'package:newsappwassim/sport_screen.dart';
 import 'package:newsappwassim/newscarousel.dart';
 import 'package:newsappwassim/messageac.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/user_page.dart';
 import 'package:newsappwassim/loginpage.dart';
+import 'package:newsappwassim/home_screen.dart';
 
-class SportScreen extends StatefulWidget {
-  const SportScreen({Key? key}) : super(key: key);
+
+
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
-  _SportScreenState createState() => _SportScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _SportScreenState extends State<SportScreen> {
-  List<SportApiModel>? sportList;
+class _HomeScreenState extends State<Login> {
+  List<NewsApiModel>? newsList;
   bool isLoading = true;
   var currentIndex = 0;
 
@@ -35,7 +38,7 @@ class _SportScreenState extends State<SportScreen> {
     getNews().then((value) {
       setState(() {
         if (value.isNotEmpty) {
-          sportList = value;
+          newsList = value;
           isLoading = false;
         } else {
           print("La liste est vide");
@@ -76,141 +79,14 @@ class _SportScreenState extends State<SportScreen> {
         titleSpacing: 0,
       ),
       drawer: const NavigationDrawer(),
-      body: Container(
-        height: size.height,
-        width: size.width,
-        child: Column(
-          children: [
-              ExpansionTile(title: Text('Sport',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
-        
-        ),
-        
-        children: [
-          ListTile(title: Text('Général',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
-        ),
-        onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => HomeScreen())),
-        )
-        ],
-        ),
-            SizedBox(
-              height: 10,
-            ),
-            WelcomeWidget(),
-            SizedBox(
-              height: 10,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            isLoading
-                ? Container(
-                    height: size.height / 20,
-                    width: size.height / 20,
-                    child: CircularProgressIndicator(),
-                  )
-                : Expanded(
-                    child: Container(
-                      child: ListView.builder(
-                        itemCount: sportList!.length,
-                        itemBuilder: (context, index) {
-                          return listItems(size, sportList![index]);
-                        },
-                      ),
-                    ),
-                  ),
-          ],
-        ),
-      ),
+     
+     
+      
     );
   }
 
-  Widget listItems(Size size, SportApiModel model) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
-      child: GestureDetector(
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => Readingsport(
-              model: model,
-            ),
-          ),
-        ),
-        child: Container(
-          padding: EdgeInsets.only(bottom: 10),
-          width: size.width / 1.15,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10), color: Colors.grey[200]),
-          child: Column(
-            children: [
-              Container(
-                //le container de mon image
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                margin: EdgeInsets.symmetric(vertical: 5),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey[200]),
-                child: model.imageUrl != ""
-                    ? Image.network(
-                        model.imageUrl,
-                        fit: BoxFit.cover,
-                      )
-                    : Text("Impossible de charger"),
-              ),
-              Container(
-                //le container de mon titre
-                width: size.width / 1.1,
-                padding: EdgeInsets.symmetric(vertical: 5),
-                child: Text(
-                  model.title,
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              //container de la description
-              // Container(
-              //   width: size.width / 1.1,
-              //   padding: EdgeInsets.symmetric(vertical: 5),
-              //   child: Text(
-              //     model.description,
-              //     style: TextStyle(
-              //       fontSize: 13,
-              //     ),
-              //   ),
-              // ),
-              Container(
-                  //Mon container pour la partie date de publication en bas à droite
-                  width: size.width / 1.1,
-                  padding: EdgeInsets.symmetric(vertical: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        ("Auteur: ") + model.author,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                      Text(
-                        ("Publié le ") + model.publishedAt,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                    ],
-                  )),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+
+  
 }
 
 //mon drawer = ma sidebar
@@ -220,8 +96,8 @@ class NavigationDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Drawer(
-       
-            child: Column(
+        child: 
+            Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             buildHeader(context),
@@ -298,7 +174,7 @@ Widget buildMenuItems(BuildContext context) => Container(
             onTap: () {},
           ),
           ListTile(
-           leading: const Icon(Icons.login),
+            leading: const Icon(Icons.login),
             title: const Text('Connexion'),
             onTap: () => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => Login())),
@@ -317,7 +193,10 @@ Widget buildMenuItems(BuildContext context) => Container(
                   child: Icon(Icons.arrow_back, color: Colors.white),
                 ),
               ),),
-      
+          const Divider(
+            color: Colors.black,
+          ),
+         
         ],
       ),
     );

@@ -5,6 +5,7 @@ import 'package:newsappwassim/const.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
+
 class Readingsport extends StatelessWidget {
   final SportApiModel model;
 

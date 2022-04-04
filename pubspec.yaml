@@ -37,6 +37,7 @@ dependencies:
   bubble_bottom_bar: ^2.0.0
   carousel_slider: ^4.0.0
   http: ^0.13.4
+  google_sign_in: ^5.2.4
 
  
   

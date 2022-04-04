@@ -3,6 +3,7 @@ import 'package:newsappwassim/modelsport.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/gestures.dart';
 
 
 
@@ -10,6 +11,11 @@ class Readingsport extends StatelessWidget {
   final SportApiModel model;
 
   const Readingsport({required this.model, Key? key}) : super(key: key);
+
+       //ma fon,ction pour ouvrir le site de l'article
+    void _launchURL() async {
+    if (!await launch(model.url)) throw 'Impossible de lancer $model.url';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,14 +103,28 @@ class Readingsport extends StatelessWidget {
                 SizedBox(height: 10,),
                  Container(
                   width: size.width / 1.05,
-                  child: Text(
-                   "Pour lire la suite de l'article allez sur " +  model.url,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 10,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(children: [
+                      const TextSpan(
+                        text: "Pour lire la suite de l'article  ",
+                        style: TextStyle(fontSize: 15,
+                      fontWeight: FontWeight.w500,),
+                      ),
+                      TextSpan(
+                          text: "Cliquez ici",
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.blue,
+                            decoration: TextDecoration.underline,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () async {
+                              _launchURL();
+                            }),
+                ]),
+            ),
                   
                 ),
               ],

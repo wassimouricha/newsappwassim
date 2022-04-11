@@ -4,6 +4,7 @@ import 'package:newsappwassim/modelsport.dart';
 import 'package:newsappwassim/sport_api.dart';
 import 'package:newsappwassim/sport_screened.dart';
 import 'package:newsappwassim/sante_screen.dart';
+import 'package:newsappwassim/science_screen.dart';
 import 'package:newsappwassim/home_screen.dart';
 import 'package:newsappwassim/newscarousel.dart';
 import 'package:newsappwassim/messageac.dart';
@@ -99,7 +100,13 @@ class _SportScreenState extends State<SportScreen> {
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SanteScreen())),
-        )
+        ),
+          ListTile(title: Text('Science',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+        ),
+        onTap:() => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => ScienceScreen())),
+        ),
         ],
         ),
             SizedBox(

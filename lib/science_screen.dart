@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/const.dart';
-import 'package:newsappwassim/model.dart';
-import 'package:newsappwassim/news_api.dart';
-import 'package:newsappwassim/news_screen.dart';
-import 'package:newsappwassim/sport_screen.dart';
+import 'package:newsappwassim/modelscience.dart';
+import 'package:newsappwassim/science_api.dart';
+import 'package:newsappwassim/science_screened.dart';
+import 'package:newsappwassim/home_screen.dart';
 import 'package:newsappwassim/sante_screen.dart';
-import 'package:newsappwassim/science_screen.dart';
+import 'package:newsappwassim/sport_screen.dart';
 import 'package:newsappwassim/newscarousel.dart';
 import 'package:newsappwassim/messageac.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/user_page.dart';
 import 'package:newsappwassim/loginpage.dart';
 
-
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class ScienceScreen extends StatefulWidget {
+  const ScienceScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _ScienceScreenState createState() => _ScienceScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  List<NewsApiModel>? newsList;
+class _ScienceScreenState extends State<ScienceScreen> {
+  List<ScienceApiModel>? scienceList;
   bool isLoading = true;
   var currentIndex = 0;
 
@@ -39,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     getNews().then((value) {
       setState(() {
         if (value.isNotEmpty) {
-          newsList = value;
+          scienceList = value;
           isLoading = false;
         } else {
           print("La liste est vide");
@@ -80,22 +78,24 @@ class _HomeScreenState extends State<HomeScreen> {
         titleSpacing: 0,
       ),
       drawer: const NavigationDrawer(),
-      body: 
-      
-      Container(
-       
+      body: Container(
         height: size.height,
         width: size.width,
         child: Column(
-          
           children: [
-             ExpansionTile(title: Text('Général',
+              ExpansionTile(title: Text('Science',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         
         ),
         
         children: [
-          ListTile(title: Text('Sport',
+          ListTile(title: Text('Général',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+        ),
+        onTap:() => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => HomeScreen())),
+        ),
+         ListTile(title: Text('Sport',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         ),
         onTap:() => Navigator.of(context).pushReplacement(
@@ -106,16 +106,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SanteScreen())),
-        ),
-           ListTile(title: Text('Science',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
-        ),
-        onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => ScienceScreen())),
-        ),
-
+        )
         ],
-        
         ),
             SizedBox(
               height: 10,
@@ -136,9 +128,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 : Expanded(
                     child: Container(
                       child: ListView.builder(
-                        itemCount: newsList!.length,
+                        itemCount: scienceList!.length,
                         itemBuilder: (context, index) {
-                          return listItems(size, newsList![index]);
+                          return listItems(size, scienceList![index]);
                         },
                       ),
                     ),
@@ -149,27 +141,24 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget listItems(Size size, NewsApiModel model) {
-    return Container(
+  Widget listItems(Size size, ScienceApiModel model) {
+    return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => ReadingNews(
+            builder: (_) => Readingscience(
               model: model,
             ),
           ),
         ),
-        child: 
-        Container(
+        child: Container(
           padding: EdgeInsets.only(bottom: 10),
           width: size.width / 1.15,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10), color: Colors.grey[200]),
           child: Column(
             children: [
-             
-              
               Container(
                 //le container de mon image
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -196,7 +185,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-             
+              //container de la description
+              // Container(
+              //   width: size.width / 1.1,
+              //   padding: EdgeInsets.symmetric(vertical: 5),
+              //   child: Text(
+              //     model.description,
+              //     style: TextStyle(
+              //       fontSize: 13,
+              //     ),
+              //   ),
+              // ),
               Container(
                   //Mon container pour la partie date de publication en bas à droite
                   width: size.width / 1.1,
@@ -226,7 +225,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-   String getTruncatedContent(String text, int truncatedNumber) {
+      //fonction permettant de mettre des pointillé afin de ne pas mettre tout le texte et donc pas d'overflow
+  String getTruncatedContent(String text, int truncatedNumber) {
     return text.length > truncatedNumber
         ? text.substring(0, truncatedNumber) + "..."
         : text;
@@ -240,8 +240,8 @@ class NavigationDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Drawer(
-        child: 
-            Column(
+       
+            child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             buildHeader(context),
@@ -318,7 +318,7 @@ Widget buildMenuItems(BuildContext context) => Container(
             onTap: () {},
           ),
           ListTile(
-            leading: const Icon(Icons.login),
+           leading: const Icon(Icons.login),
             title: const Text('Connexion'),
             onTap: () => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => Login())),
@@ -337,29 +337,7 @@ Widget buildMenuItems(BuildContext context) => Container(
                   child: Icon(Icons.arrow_back, color: Colors.white),
                 ),
               ),),
-          const Divider(
-            color: Colors.black,
-          ),
-          // Expanded(
-          //     child: Align(
-          //       alignment: Alignment.bottomCenter,
-          //       child: Container(
-          //         height: 65,
-          //         width: MediaQuery.of(context).size.width,
-          //         color: Colors.black,
-          //         child: Center(
-          //           //premet de mettre l'enfant du widget et donc ce qu'il y à a l'interieur au centre
-          //           child: Text(
-          //             "v1.0.3",
-          //             style: TextStyle(
-          //                 fontSize: 20,
-          //                 fontWeight: FontWeight.w600,
-          //                 color: Colors.white),
-          //           ),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
+      
         ],
       ),
     );

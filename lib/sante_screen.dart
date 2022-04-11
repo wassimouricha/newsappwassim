@@ -5,6 +5,7 @@ import 'package:newsappwassim/sante_api.dart';
 import 'package:newsappwassim/sante_screened.dart';
 import 'package:newsappwassim/home_screen.dart';
 import 'package:newsappwassim/sport_screen.dart';
+import 'package:newsappwassim/science_screen.dart';
 import 'package:newsappwassim/newscarousel.dart';
 import 'package:newsappwassim/messageac.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
@@ -99,6 +100,12 @@ class _SanteScreenState extends State<SanteScreen> {
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SportScreen())),
+        ),
+          ListTile(title: Text('Science',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+        ),
+        onTap:() => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => ScienceScreen())),
         )
         ],
         ),

@@ -71,6 +71,7 @@ class ReadingNews extends StatelessWidget {
                     ),
                   ),
                 ),
+                //le container de l'image
                 Container(
                   height: size.height / 3,
                   width: size.width / 1.05,
@@ -105,7 +106,7 @@ class ReadingNews extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                
+                //l'hyperlien permettant d'acceder à l'article 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children:[
@@ -137,6 +138,27 @@ class ReadingNews extends StatelessWidget {
             ),
           ),
                 ],),
+                  SizedBox(height: 15),
+                //l'auteur de l'article et la date de sa publication
+                 Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        ("Auteur: ") + getTruncatedContent(model.author,20),
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      Text(
+                        ("Publié le ") + model.publishedAt,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                    ],
+                  ),
               
               ],),
       ),

@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   child: Builder(
                     builder: (context) => IconButton(
-                      icon: Image.asset("image/drawer.png"),
+                      icon: Image.asset("image/menu_circular_button_burger_icon_124214.png"),
                       onPressed: () => Scaffold.of(context).openDrawer(),
                     ),
                   ),
@@ -94,30 +94,35 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
              ExpansionTile(title: Text('Général',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+        textAlign: TextAlign.center,
         
         ),
         
         children: [
           ListTile(title: Text('Sport',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+         textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SportScreen())),
         ),
           ListTile(title: Text('Santé',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+         textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SanteScreen())),
         ),
            ListTile(title: Text('Science',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+         textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => ScienceScreen())),
         ),
             ListTile(title: Text('Tech',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+         textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => TechScreen())),
@@ -125,6 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
         
             ListTile(title: Text('Business',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+         textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => BizScreen())),
@@ -132,6 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
         
             ListTile(title: Text('Entertainement',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+         textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => EntScreen())),
@@ -277,7 +284,7 @@ class NavigationDrawer extends StatelessWidget {
 
 //le widget du header du drawer/sidebar
 Widget buildHeader(BuildContext context) => Material(
-      color: Colors.blue,
+      color: Colors.black,
       child: InkWell(
         onTap: () {
           //pour fermer le navigation drawer
@@ -349,7 +356,7 @@ Widget buildMenuItems(BuildContext context) => Container(
           ),
             InkWell(
                 borderRadius: BorderRadius.circular(500),
-                splashColor: Colors.blue,
+                splashColor: Colors.black,
                 onTap: () {
                   //pour fermer le drawer
                   Navigator.of(context).pop();
@@ -357,7 +364,7 @@ Widget buildMenuItems(BuildContext context) => Container(
                 child: Center(
                   child: CircleAvatar(
                   radius: 20,
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Colors.black,
                   child: Icon(Icons.arrow_back, color: Colors.white),
                 ),
               ),),

@@ -88,42 +88,49 @@ class _ScienceScreenState extends State<ScienceScreen> {
           children: [
               ExpansionTile(title: Text('Science',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+         textAlign: TextAlign.center,
         
         ),
         
         children: [
           ListTile(title: Text('Général',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+         textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => HomeScreen())),
         ),
          ListTile(title: Text('Sport',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+         textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SportScreen())),
         ),
           ListTile(title: Text('Santé',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+         textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SanteScreen())),
         ),
            ListTile(title: Text('Tech',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+         textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => TechScreen())),
         ),
         ListTile(title: Text('Business',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+         textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => BizScreen())),
         ),
         ListTile(title: Text('Entertainement',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+         textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => EntScreen())),

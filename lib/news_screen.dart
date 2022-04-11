@@ -142,6 +142,7 @@ class ReadingNews extends StatelessWidget {
                 //l'auteur de l'article et la date de sa publication
                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    
                     children: [
                       Text(
                         ("Auteur: ") + getTruncatedContent(model.author,20),

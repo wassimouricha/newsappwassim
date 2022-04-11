@@ -71,6 +71,8 @@ flutter:
       - image/cyberpunk-207.jpg
       - image/Allen-Iverson.jpg
       - image/liberty.jpg
+      - image/menu_circular_button_burger_icon_124214.png
+      
       
 
   # An image asset can refer to one or more resolution-specific "variants", see

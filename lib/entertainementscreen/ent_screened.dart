@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:newsappwassim/modelentertainement.dart';
+import 'package:newsappwassim/entertainementscreen/modelentertainement.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:url_launcher/url_launcher.dart';

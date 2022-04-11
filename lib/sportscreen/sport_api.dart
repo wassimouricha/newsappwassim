@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:newsappwassim/modelentertainement.dart';
+import 'package:newsappwassim/sportscreen/modelsport.dart';
 
-Future<List<EntApiModel>> getNews() async {
+Future<List<SportApiModel>> getNews() async {
   Uri uri = Uri.parse(
-      "https://newsapi.org/v2/top-headlines?country=fr&category=entertainment&apiKey=56673b513f424d3e9d4ce0afc8293687");
+      "https://newsapi.org/v2/top-headlines?country=fr&category=sports&apiKey=56673b513f424d3e9d4ce0afc8293687");
 
   final response = await http.get(uri);
 
@@ -14,13 +14,13 @@ Future<List<EntApiModel>> getNews() async {
 
     List _articalsList = map['articles'];
 
-    List<EntApiModel> entList = _articalsList
-        .map((jsonData) => EntApiModel.fromJson(jsonData))
+    List<SportApiModel> sportList = _articalsList
+        .map((jsonData) => SportApiModel.fromJson(jsonData))
         .toList();
 
     print(_articalsList);
 
-    return entList;
+    return sportList;
   } else {
     print("erreur");
     return [];

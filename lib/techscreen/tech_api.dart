@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:newsappwassim/modelbusiness.dart';
+import 'package:newsappwassim/techscreen/modeltech.dart';
 
-Future<List<BizApiModel>> getNews() async {
+Future<List<TechApiModel>> getNews() async {
   Uri uri = Uri.parse(
-      "https://newsapi.org/v2/top-headlines?country=fr&category=business&apiKey=56673b513f424d3e9d4ce0afc8293687");
+      "https://newsapi.org/v2/top-headlines?country=fr&category=technology&apiKey=56673b513f424d3e9d4ce0afc8293687");
 
   final response = await http.get(uri);
 
@@ -14,13 +14,13 @@ Future<List<BizApiModel>> getNews() async {
 
     List _articalsList = map['articles'];
 
-    List<BizApiModel> bizList = _articalsList
-        .map((jsonData) => BizApiModel.fromJson(jsonData))
+    List<TechApiModel> techList = _articalsList
+        .map((jsonData) => TechApiModel.fromJson(jsonData))
         .toList();
 
     print(_articalsList);
 
-    return bizList;
+    return techList;
   } else {
     print("erreur");
     return [];

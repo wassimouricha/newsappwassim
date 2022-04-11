@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:newsappwassim/modelsante.dart';
+import 'package:newsappwassim/sciencescreen/modelscience.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/gestures.dart';
 
-class Readingsante extends StatelessWidget {
-  final SanteApiModel model;
+class Readingscience extends StatelessWidget {
+  final ScienceApiModel model;
 
-  const Readingsante({required this.model, Key? key}) : super(key: key);
+  const Readingscience({required this.model, Key? key}) : super(key: key);
 
   //ma fon,ction pour ouvrir le site de l'article
   void _launchURL() async {

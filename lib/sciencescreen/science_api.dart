@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:newsappwassim/modelscience.dart';
+import 'package:newsappwassim/sciencescreen/modelscience.dart';
 
 Future<List<ScienceApiModel>> getNews() async {
   Uri uri = Uri.parse(

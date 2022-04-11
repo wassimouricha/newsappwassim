@@ -3,7 +3,7 @@ import 'package:newsappwassim/const.dart';
 import 'package:newsappwassim/model.dart';
 import 'package:newsappwassim/news_api.dart';
 import 'package:newsappwassim/news_screen.dart';
-import 'package:newsappwassim/sport_screen.dart';
+import 'package:newsappwassim/sportscreen/sport_screen.dart';
 import 'package:newsappwassim/newscarousel.dart';
 import 'package:newsappwassim/messageac.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';

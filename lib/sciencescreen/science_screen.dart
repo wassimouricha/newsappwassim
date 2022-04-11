@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/const.dart';
-import 'package:newsappwassim/modelentertainement.dart';
-import 'package:newsappwassim/ent_api.dart';
-import 'package:newsappwassim/ent_screened.dart';
+import 'package:newsappwassim/sciencescreen/modelscience.dart';
+import 'package:newsappwassim/sciencescreen/science_api.dart';
+import 'package:newsappwassim/sciencescreen/science_screened.dart';
 import 'package:newsappwassim/home_screen.dart';
-import 'package:newsappwassim/biz_screen.dart';
-import 'package:newsappwassim/sante_screen.dart';
-import 'package:newsappwassim/sport_screen.dart';
-import 'package:newsappwassim/science_screen.dart';
-import 'package:newsappwassim/tech_screen.dart';
+import 'package:newsappwassim/santescreen/sante_screen.dart';
+import 'package:newsappwassim/sportscreen/sport_screen.dart';
+import 'package:newsappwassim/techscreen/tech_screen.dart';
+import 'package:newsappwassim/businesscreen/biz_screen.dart';
+import 'package:newsappwassim/entertainementscreen/ent_screen.dart';
 import 'package:newsappwassim/newscarousel.dart';
 import 'package:newsappwassim/messageac.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/user_page.dart';
 import 'package:newsappwassim/loginpage.dart';
 
-class EntScreen extends StatefulWidget {
-  const EntScreen({Key? key}) : super(key: key);
+class ScienceScreen extends StatefulWidget {
+  const ScienceScreen({Key? key}) : super(key: key);
 
   @override
-  _EntScreenState createState() => _EntScreenState();
+  _ScienceScreenState createState() => _ScienceScreenState();
 }
 
-class _EntScreenState extends State<EntScreen> {
-  List<EntApiModel>? entList;
+class _ScienceScreenState extends State<ScienceScreen> {
+  List<ScienceApiModel>? scienceList;
   bool isLoading = true;
   var currentIndex = 0;
 
@@ -40,7 +40,7 @@ class _EntScreenState extends State<EntScreen> {
     getNews().then((value) {
       setState(() {
         if (value.isNotEmpty) {
-          entList = value;
+          scienceList = value;
           isLoading = false;
         } else {
           print("La liste est vide");
@@ -86,7 +86,7 @@ class _EntScreenState extends State<EntScreen> {
         width: size.width,
         child: Column(
           children: [
-              ExpansionTile(title: Text('Entertainement',
+              ExpansionTile(title: Text('Science',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         
         ),
@@ -104,29 +104,29 @@ class _EntScreenState extends State<EntScreen> {
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SportScreen())),
         ),
-          ListTile(title: Text('Science',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
-        ),
-        onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => ScienceScreen())),
-        ),
           ListTile(title: Text('Santé',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SanteScreen())),
         ),
-         ListTile(title: Text('Tech',
+           ListTile(title: Text('Tech',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => TechScreen())),
         ),
-         ListTile(title: Text('Business',
+        ListTile(title: Text('Business',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => BizScreen())),
+        ),
+        ListTile(title: Text('Entertainement',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+        ),
+        onTap:() => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => EntScreen())),
         ),
         ],
         ),
@@ -149,9 +149,9 @@ class _EntScreenState extends State<EntScreen> {
                 : Expanded(
                     child: Container(
                       child: ListView.builder(
-                        itemCount: entList!.length,
+                        itemCount: scienceList!.length,
                         itemBuilder: (context, index) {
-                          return listItems(size, entList![index]);
+                          return listItems(size, scienceList![index]);
                         },
                       ),
                     ),
@@ -162,13 +162,13 @@ class _EntScreenState extends State<EntScreen> {
     );
   }
 
-  Widget listItems(Size size, EntApiModel model) {
+  Widget listItems(Size size, ScienceApiModel model) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => Readingent(
+            builder: (_) => Readingscience(
               model: model,
             ),
           ),

@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/const.dart';
-import 'package:newsappwassim/modeltech.dart';
-import 'package:newsappwassim/tech_api.dart';
-import 'package:newsappwassim/tech_screened.dart';
+import 'package:newsappwassim/santescreen/modelsante.dart';
+import 'package:newsappwassim/santescreen/sante_api.dart';
+import 'package:newsappwassim/santescreen/sante_screened.dart';
 import 'package:newsappwassim/home_screen.dart';
-import 'package:newsappwassim/sante_screen.dart';
-import 'package:newsappwassim/biz_screen.dart';
-import 'package:newsappwassim/sport_screen.dart';
-import 'package:newsappwassim/ent_screen.dart';
-import 'package:newsappwassim/science_screen.dart';
+import 'package:newsappwassim/sportscreen/sport_screen.dart';
+import 'package:newsappwassim/techscreen/tech_screen.dart';
+import 'package:newsappwassim/sciencescreen/science_screen.dart';
+import 'package:newsappwassim/businesscreen/biz_screen.dart';
 import 'package:newsappwassim/newscarousel.dart';
 import 'package:newsappwassim/messageac.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/user_page.dart';
 import 'package:newsappwassim/loginpage.dart';
 
-class TechScreen extends StatefulWidget {
-  const TechScreen({Key? key}) : super(key: key);
+class SanteScreen extends StatefulWidget {
+  const SanteScreen({Key? key}) : super(key: key);
 
   @override
-  _TechScreenState createState() => _TechScreenState();
+  _SanteScreenState createState() => _SanteScreenState();
 }
 
-class _TechScreenState extends State<TechScreen> {
-  List<TechApiModel>? techList;
+class _SanteScreenState extends State<SanteScreen> {
+  List<SanteApiModel>? santeList;
   bool isLoading = true;
   var currentIndex = 0;
 
@@ -40,7 +39,7 @@ class _TechScreenState extends State<TechScreen> {
     getNews().then((value) {
       setState(() {
         if (value.isNotEmpty) {
-          techList = value;
+          santeList = value;
           isLoading = false;
         } else {
           print("La liste est vide");
@@ -86,7 +85,7 @@ class _TechScreenState extends State<TechScreen> {
         width: size.width,
         child: Column(
           children: [
-              ExpansionTile(title: Text('Tech',
+              ExpansionTile(title: Text('Sante',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         
         ),
@@ -110,26 +109,18 @@ class _TechScreenState extends State<TechScreen> {
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => ScienceScreen())),
         ),
-          ListTile(title: Text('Santé',
+            ListTile(title: Text('Tech',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         ),
         onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => SanteScreen())),
+                MaterialPageRoute(builder: (context) => TechScreen())),
         ),
-        ListTile(title: Text('Business',
+           ListTile(title: Text('Business',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => BizScreen())),
         ),
-        
-            ListTile(title: Text('Entertainement',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
-        ),
-        onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => EntScreen())),
-        ),
-
         ],
         ),
             SizedBox(
@@ -151,9 +142,9 @@ class _TechScreenState extends State<TechScreen> {
                 : Expanded(
                     child: Container(
                       child: ListView.builder(
-                        itemCount: techList!.length,
+                        itemCount: santeList!.length,
                         itemBuilder: (context, index) {
-                          return listItems(size, techList![index]);
+                          return listItems(size, santeList![index]);
                         },
                       ),
                     ),
@@ -164,13 +155,13 @@ class _TechScreenState extends State<TechScreen> {
     );
   }
 
-  Widget listItems(Size size, TechApiModel model) {
+  Widget listItems(Size size, SanteApiModel model) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => Readingtech(
+            builder: (_) => Readingsante(
               model: model,
             ),
           ),

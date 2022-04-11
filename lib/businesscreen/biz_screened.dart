@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:newsappwassim/modeltech.dart';
+import 'package:newsappwassim/businesscreen/modelbusiness.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/gestures.dart';
 
-class Readingtech extends StatelessWidget {
-  final TechApiModel model;
+class Readingbiz extends StatelessWidget {
+  final BizApiModel model;
 
-  const Readingtech({required this.model, Key? key}) : super(key: key);
+  const Readingbiz({required this.model, Key? key}) : super(key: key);
 
   //ma fon,ction pour ouvrir le site de l'article
   void _launchURL() async {

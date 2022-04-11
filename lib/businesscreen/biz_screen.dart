@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/const.dart';
-import 'package:newsappwassim/modelscience.dart';
-import 'package:newsappwassim/science_api.dart';
-import 'package:newsappwassim/science_screened.dart';
+import 'package:newsappwassim/businesscreen/modelbusiness.dart';
+import 'package:newsappwassim/businesscreen/biz_api.dart';
+import 'package:newsappwassim/businesscreen/biz_screened.dart';
 import 'package:newsappwassim/home_screen.dart';
-import 'package:newsappwassim/sante_screen.dart';
-import 'package:newsappwassim/sport_screen.dart';
-import 'package:newsappwassim/tech_screen.dart';
-import 'package:newsappwassim/biz_screen.dart';
-import 'package:newsappwassim/ent_screen.dart';
+import 'package:newsappwassim/entertainementscreen/ent_screen.dart';
+import 'package:newsappwassim/santescreen/sante_screen.dart';
+import 'package:newsappwassim/sportscreen/sport_screen.dart';
+import 'package:newsappwassim/sciencescreen/science_screen.dart';
+import 'package:newsappwassim/techscreen/tech_screen.dart';
 import 'package:newsappwassim/newscarousel.dart';
 import 'package:newsappwassim/messageac.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/user_page.dart';
 import 'package:newsappwassim/loginpage.dart';
 
-class ScienceScreen extends StatefulWidget {
-  const ScienceScreen({Key? key}) : super(key: key);
+class BizScreen extends StatefulWidget {
+  const BizScreen({Key? key}) : super(key: key);
 
   @override
-  _ScienceScreenState createState() => _ScienceScreenState();
+  _BizScreenState createState() => _BizScreenState();
 }
 
-class _ScienceScreenState extends State<ScienceScreen> {
-  List<ScienceApiModel>? scienceList;
+class _BizScreenState extends State<BizScreen> {
+  List<BizApiModel>? bizList;
   bool isLoading = true;
   var currentIndex = 0;
 
@@ -40,7 +40,7 @@ class _ScienceScreenState extends State<ScienceScreen> {
     getNews().then((value) {
       setState(() {
         if (value.isNotEmpty) {
-          scienceList = value;
+          bizList = value;
           isLoading = false;
         } else {
           print("La liste est vide");
@@ -86,7 +86,7 @@ class _ScienceScreenState extends State<ScienceScreen> {
         width: size.width,
         child: Column(
           children: [
-              ExpansionTile(title: Text('Science',
+              ExpansionTile(title: Text('Business',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         
         ),
@@ -104,25 +104,25 @@ class _ScienceScreenState extends State<ScienceScreen> {
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SportScreen())),
         ),
+          ListTile(title: Text('Science',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+        ),
+        onTap:() => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => ScienceScreen())),
+        ),
           ListTile(title: Text('Santé',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SanteScreen())),
         ),
-           ListTile(title: Text('Tech',
+         ListTile(title: Text('Tech',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => TechScreen())),
         ),
-        ListTile(title: Text('Business',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
-        ),
-        onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => BizScreen())),
-        ),
-        ListTile(title: Text('Entertainement',
+         ListTile(title: Text('Entertainement',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         ),
         onTap:() => Navigator.of(context).pushReplacement(
@@ -149,9 +149,9 @@ class _ScienceScreenState extends State<ScienceScreen> {
                 : Expanded(
                     child: Container(
                       child: ListView.builder(
-                        itemCount: scienceList!.length,
+                        itemCount: bizList!.length,
                         itemBuilder: (context, index) {
-                          return listItems(size, scienceList![index]);
+                          return listItems(size, bizList![index]);
                         },
                       ),
                     ),
@@ -162,13 +162,13 @@ class _ScienceScreenState extends State<ScienceScreen> {
     );
   }
 
-  Widget listItems(Size size, ScienceApiModel model) {
+  Widget listItems(Size size, BizApiModel model) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => Readingscience(
+            builder: (_) => Readingbiz(
               model: model,
             ),
           ),

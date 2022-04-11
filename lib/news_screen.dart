@@ -118,6 +118,7 @@ class ReadingNews extends StatelessWidget {
                         width: size.width / 1.05,
                         child: 
                       Column( children:[
+                        
                            Text(
                         ("Auteur: ") + getTruncatedContent(model.author,20),
                         style: TextStyle(
@@ -125,6 +126,7 @@ class ReadingNews extends StatelessWidget {
                           color: Colors.black,
                         ),
                       ),
+                   
                       Text(
                         ("Publié le ") + model.publishedAt,
                         style: TextStyle(

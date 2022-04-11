@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: const NavigationDrawer(),
       body: 
-      
+      SingleChildScrollView(child:
       Container(
        
         height: size.height,
@@ -177,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-    );
+    ),);
   }
 
   Widget listItems(Size size, NewsApiModel model) {
@@ -242,8 +242,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.grey[600],
                         ),
                       ),
+                      SizedBox(width: 1,),
                       Text(
-                        ("Publié le ") + model.publishedAt,
+                        ("Publié le ") + getTruncatedContent(model.publishedAt,10),
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey[600],

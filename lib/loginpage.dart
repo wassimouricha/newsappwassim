@@ -2,13 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:newsappwassim/model.dart';
 import 'package:newsappwassim/news_api.dart';
-import 'package:newsappwassim/news_screen.dart';
-import 'package:newsappwassim/sportscreen/sport_screen.dart';
-import 'package:newsappwassim/newscarousel.dart';
-import 'package:newsappwassim/messageac.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/user_page.dart';
-import 'package:newsappwassim/loginpage.dart';
 import 'package:newsappwassim/home_screen.dart';
 
 

@@ -104,6 +104,38 @@ class Readingbiz extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
+                   //l'auteur de l'article et la date de sa publication
+                
+                 Row(
+                   
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    
+                    children: [
+                      Container(
+                        width: size.width / 1.05,
+                        child: 
+                      Column( children:[
+                           Text(
+                        ("Auteur: ") + getTruncatedContent(model.author,20),
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Text(
+                        ("Publié le ") + model.publishedAt,
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ),
+                      ),
+                       ], ),),
+                     
+                    ],
+                  ),
+                    SizedBox(height: 5,),
                 Container(
                   width: size.width / 1.05,
                   child: RichText(
@@ -132,6 +164,7 @@ class Readingbiz extends StatelessWidget {
                     ]),
                   ),
                 ),
+                  SizedBox(height: 5,),
               ],
             ),
           ),

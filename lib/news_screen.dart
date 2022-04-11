@@ -106,10 +106,38 @@ class ReadingNews extends StatelessWidget {
                   ),
                 ),
                        
-                SizedBox(
-                  height: 10,
-                ),
+              SizedBox(height: 5),
+                //l'auteur de l'article et la date de sa publication
+                
+                 Row(
+                   
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    
+                    children: [
+                      Container(
+                        width: size.width / 1.05,
+                        child: 
+                      Column( children:[
+                           Text(
+                        ("Auteur: ") + getTruncatedContent(model.author,20),
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Text(
+                        ("Publié le ") + model.publishedAt,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.black,
+                        ),
+                      ),
+                       ], ),),
+                     
+                    ],
+                  ),
                 //l'hyperlien permettant d'acceder à l'article 
+                SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children:[
@@ -139,30 +167,11 @@ class ReadingNews extends StatelessWidget {
                             }),
                 ]),
             ),
+            
           ),
+           SizedBox(height: 5,),
                 ],),
-                  SizedBox(height: 15),
-                //l'auteur de l'article et la date de sa publication
-                 Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    
-                    children: [
-                      Text(
-                        ("Auteur: ") + getTruncatedContent(model.author,20),
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                      Text(
-                        ("Publié le ") + model.publishedAt,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                    ],
-                  ),
+                 
               
               ],),
       ),

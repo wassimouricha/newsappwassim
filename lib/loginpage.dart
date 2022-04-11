@@ -6,8 +6,6 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/user_page.dart';
 import 'package:newsappwassim/home_screen.dart';
 
-
-
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -74,14 +72,53 @@ class _HomeScreenState extends State<Login> {
         titleSpacing: 0,
       ),
       drawer: const NavigationDrawer(),
-     
-     
-      
+      body: LoginWidget(),
     );
   }
+}
 
+//mon widget de login
 
-  
+class LoginWidget extends StatefulWidget {
+  const LoginWidget({Key? key}) : super(key: key);
+
+  @override
+  State<LoginWidget> createState() => _LoginWidgetState();
+}
+
+class _LoginWidgetState extends State<LoginWidget> {
+  final emailcontroller = TextEditingController();
+  final passwordcontroller = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+        
+          SizedBox(
+            height: 10,
+          ),
+          TextField(
+            controller: emailcontroller,
+            cursorColor: Colors.white,
+            textInputAction: TextInputAction.next,
+            decoration: InputDecoration(labelText: "email"),
+          ),
+          SizedBox(height: 4,),
+           TextField(
+            controller: passwordcontroller,
+            cursorColor: Colors.white,
+            textInputAction: TextInputAction.next,
+            decoration: InputDecoration(labelText: "Mot de passe"),
+          ),
+          SizedBox(height: 20,),
+          ElevatedButton.icon(  onPressed: (){}, icon: Icon(Icons.lock_open, size: 22,), label: Text("Se connecter", style: TextStyle(fontSize: 20),))
+        ],
+      ),
+    );
+  }
 }
 
 //mon drawer = ma sidebar
@@ -91,8 +128,7 @@ class NavigationDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Drawer(
-        child: 
-            Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             buildHeader(context),
@@ -151,7 +187,6 @@ Widget buildHeader(BuildContext context) => Material(
 
 //le widget du menu du drawer/sidebar
 Widget buildMenuItems(BuildContext context) => Container(
-      
       child: Wrap(
         runSpacing: 16, //espace vertical
         children: [
@@ -174,24 +209,24 @@ Widget buildMenuItems(BuildContext context) => Container(
             onTap: () => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => Login())),
           ),
-            InkWell(
-                borderRadius: BorderRadius.circular(500),
-                splashColor: Colors.blue,
-                onTap: () {
-                  //pour fermer le drawer
-                  Navigator.of(context).pop();
-                },
-                child: Center(
-                  child: CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.blue,
-                  child: Icon(Icons.arrow_back, color: Colors.white),
-                ),
-              ),),
+          InkWell(
+            borderRadius: BorderRadius.circular(500),
+            splashColor: Colors.blue,
+            onTap: () {
+              //pour fermer le drawer
+              Navigator.of(context).pop();
+            },
+            child: Center(
+              child: CircleAvatar(
+                radius: 20,
+                backgroundColor: Colors.blue,
+                child: Icon(Icons.arrow_back, color: Colors.white),
+              ),
+            ),
+          ),
           const Divider(
             color: Colors.black,
           ),
-         
         ],
       ),
     );

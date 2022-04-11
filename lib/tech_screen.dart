@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/const.dart';
-import 'package:newsappwassim/modelsport.dart';
-import 'package:newsappwassim/sport_api.dart';
-import 'package:newsappwassim/sport_screened.dart';
-import 'package:newsappwassim/sante_screen.dart';
-import 'package:newsappwassim/science_screen.dart';
+import 'package:newsappwassim/modeltech.dart';
+import 'package:newsappwassim/tech_api.dart';
+import 'package:newsappwassim/tech_screened.dart';
 import 'package:newsappwassim/home_screen.dart';
-import 'package:newsappwassim/tech_screen.dart';
+import 'package:newsappwassim/sante_screen.dart';
+import 'package:newsappwassim/sport_screen.dart';
+import 'package:newsappwassim/science_screen.dart';
 import 'package:newsappwassim/newscarousel.dart';
 import 'package:newsappwassim/messageac.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/user_page.dart';
 import 'package:newsappwassim/loginpage.dart';
 
-class SportScreen extends StatefulWidget {
-  const SportScreen({Key? key}) : super(key: key);
+class TechScreen extends StatefulWidget {
+  const TechScreen({Key? key}) : super(key: key);
 
   @override
-  _SportScreenState createState() => _SportScreenState();
+  _TechScreenState createState() => _TechScreenState();
 }
 
-class _SportScreenState extends State<SportScreen> {
-  List<SportApiModel>? sportList;
+class _TechScreenState extends State<TechScreen> {
+  List<TechApiModel>? techList;
   bool isLoading = true;
   var currentIndex = 0;
 
@@ -38,7 +38,7 @@ class _SportScreenState extends State<SportScreen> {
     getNews().then((value) {
       setState(() {
         if (value.isNotEmpty) {
-          sportList = value;
+          techList = value;
           isLoading = false;
         } else {
           print("La liste est vide");
@@ -84,7 +84,7 @@ class _SportScreenState extends State<SportScreen> {
         width: size.width,
         child: Column(
           children: [
-              ExpansionTile(title: Text('Sport',
+              ExpansionTile(title: Text('Tech',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         
         ),
@@ -96,11 +96,11 @@ class _SportScreenState extends State<SportScreen> {
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => HomeScreen())),
         ),
-         ListTile(title: Text('Santé',
+         ListTile(title: Text('Sport',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         ),
         onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => SanteScreen())),
+                MaterialPageRoute(builder: (context) => SportScreen())),
         ),
           ListTile(title: Text('Science',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
@@ -108,11 +108,11 @@ class _SportScreenState extends State<SportScreen> {
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => ScienceScreen())),
         ),
-           ListTile(title: Text('Tech',
+          ListTile(title: Text('Santé',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         ),
         onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => TechScreen())),
+                MaterialPageRoute(builder: (context) => SanteScreen())),
         ),
         ],
         ),
@@ -135,9 +135,9 @@ class _SportScreenState extends State<SportScreen> {
                 : Expanded(
                     child: Container(
                       child: ListView.builder(
-                        itemCount: sportList!.length,
+                        itemCount: techList!.length,
                         itemBuilder: (context, index) {
-                          return listItems(size, sportList![index]);
+                          return listItems(size, techList![index]);
                         },
                       ),
                     ),
@@ -148,13 +148,13 @@ class _SportScreenState extends State<SportScreen> {
     );
   }
 
-  Widget listItems(Size size, SportApiModel model) {
+  Widget listItems(Size size, TechApiModel model) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => Readingsport(
+            builder: (_) => Readingtech(
               model: model,
             ),
           ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/const.dart';
-import 'package:newsappwassim/modelbusiness.dart';
-import 'package:newsappwassim/biz_api.dart';
-import 'package:newsappwassim/biz_screened.dart';
+import 'package:newsappwassim/modelentertainement.dart';
+import 'package:newsappwassim/ent_api.dart';
+import 'package:newsappwassim/ent_screened.dart';
 import 'package:newsappwassim/home_screen.dart';
-import 'package:newsappwassim/ent_screen.dart';
+import 'package:newsappwassim/biz_screen.dart';
 import 'package:newsappwassim/sante_screen.dart';
 import 'package:newsappwassim/sport_screen.dart';
 import 'package:newsappwassim/science_screen.dart';
@@ -15,15 +15,15 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/user_page.dart';
 import 'package:newsappwassim/loginpage.dart';
 
-class BizScreen extends StatefulWidget {
-  const BizScreen({Key? key}) : super(key: key);
+class EntScreen extends StatefulWidget {
+  const EntScreen({Key? key}) : super(key: key);
 
   @override
-  _BizScreenState createState() => _BizScreenState();
+  _EntScreenState createState() => _EntScreenState();
 }
 
-class _BizScreenState extends State<BizScreen> {
-  List<BizApiModel>? bizList;
+class _EntScreenState extends State<EntScreen> {
+  List<EntApiModel>? entList;
   bool isLoading = true;
   var currentIndex = 0;
 
@@ -40,7 +40,7 @@ class _BizScreenState extends State<BizScreen> {
     getNews().then((value) {
       setState(() {
         if (value.isNotEmpty) {
-          bizList = value;
+          entList = value;
           isLoading = false;
         } else {
           print("La liste est vide");
@@ -86,7 +86,7 @@ class _BizScreenState extends State<BizScreen> {
         width: size.width,
         child: Column(
           children: [
-              ExpansionTile(title: Text('Business',
+              ExpansionTile(title: Text('Entertainement',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         
         ),
@@ -122,11 +122,11 @@ class _BizScreenState extends State<BizScreen> {
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => TechScreen())),
         ),
-         ListTile(title: Text('Entertainement',
+         ListTile(title: Text('Business',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
         ),
         onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => EntScreen())),
+                MaterialPageRoute(builder: (context) => BizScreen())),
         ),
         ],
         ),
@@ -149,9 +149,9 @@ class _BizScreenState extends State<BizScreen> {
                 : Expanded(
                     child: Container(
                       child: ListView.builder(
-                        itemCount: bizList!.length,
+                        itemCount: entList!.length,
                         itemBuilder: (context, index) {
-                          return listItems(size, bizList![index]);
+                          return listItems(size, entList![index]);
                         },
                       ),
                     ),
@@ -162,13 +162,13 @@ class _BizScreenState extends State<BizScreen> {
     );
   }
 
-  Widget listItems(Size size, BizApiModel model) {
+  Widget listItems(Size size, EntApiModel model) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => Readingbiz(
+            builder: (_) => Readingent(
               model: model,
             ),
           ),

@@ -8,6 +8,7 @@ import 'package:newsappwassim/sante_screen.dart';
 import 'package:newsappwassim/sport_screen.dart';
 import 'package:newsappwassim/tech_screen.dart';
 import 'package:newsappwassim/biz_screen.dart';
+import 'package:newsappwassim/ent_screen.dart';
 import 'package:newsappwassim/newscarousel.dart';
 import 'package:newsappwassim/messageac.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
@@ -120,6 +121,12 @@ class _ScienceScreenState extends State<ScienceScreen> {
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => BizScreen())),
+        ),
+        ListTile(title: Text('Entertainement',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+        ),
+        onTap:() => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => EntScreen())),
         ),
         ],
         ),

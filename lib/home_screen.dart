@@ -7,6 +7,7 @@ import 'package:newsappwassim/sport_screen.dart';
 import 'package:newsappwassim/sante_screen.dart';
 import 'package:newsappwassim/science_screen.dart';
 import 'package:newsappwassim/tech_screen.dart';
+import 'package:newsappwassim/ent_screen.dart';
 import 'package:newsappwassim/biz_screen.dart';
 import 'package:newsappwassim/newscarousel.dart';
 import 'package:newsappwassim/messageac.dart';
@@ -128,6 +129,14 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => BizScreen())),
         ),
+        
+            ListTile(title: Text('Entertainement',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+        ),
+        onTap:() => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => EntScreen())),
+        ),
+
 
         ],
         

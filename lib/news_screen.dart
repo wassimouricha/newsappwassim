@@ -68,7 +68,9 @@ class ReadingNews extends StatelessWidget {
                       color: Color.fromARGB(255, 0, 0, 0),
                       fontSize: 25,
                       fontWeight: FontWeight.w500,
+                      
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 //le container de l'image
@@ -100,6 +102,7 @@ class ReadingNews extends StatelessWidget {
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                        

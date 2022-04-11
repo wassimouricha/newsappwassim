@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 Container(
-                  child: Text("Wassim News App",
+                  child: Text("Wassim News App v1.2",
                       style: TextStyle(fontSize: 15, color: Colors.black)),
                 ),
               ],

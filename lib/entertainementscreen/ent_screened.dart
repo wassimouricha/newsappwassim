@@ -4,6 +4,7 @@ import 'package:newsappwassim/const.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/gestures.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Readingent extends StatelessWidget {
   final EntApiModel model;
@@ -47,8 +48,8 @@ class Readingent extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    child: Text("Wassim News App",
-                        style: TextStyle(fontSize: 15, color: Colors.black)),
+                    child: Text("Wassim News App v1.2",
+                        style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black)),
                   ),
                 ],
               )),
@@ -83,7 +84,7 @@ class Readingent extends StatelessWidget {
                         )
                       : Text(
                           "Impossible de charger l'image",
-                          style: TextStyle(
+                          style:  GoogleFonts.poppins(
                             color: Colors.white,
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
@@ -115,7 +116,7 @@ class Readingent extends StatelessWidget {
                       Column( children:[
                            Text(
                         ("Auteur: ") + getTruncatedContent(model.author,20),
-                        style: TextStyle(
+                        style:  GoogleFonts.poppins(
                           fontSize: 13,
                           fontWeight: FontWeight.w400,
                           color: Colors.black,
@@ -123,7 +124,7 @@ class Readingent extends StatelessWidget {
                       ),
                       Text(
                         ("Publié le ") + model.publishedAt,
-                        style: TextStyle(
+                        style:  GoogleFonts.poppins(
                           fontSize: 13,
                           fontWeight: FontWeight.w400,
                           color: Colors.black,
@@ -139,9 +140,9 @@ class Readingent extends StatelessWidget {
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(children: [
-                      const TextSpan(
+                       TextSpan(
                         text: "Pour lire la suite de l'article  ",
-                        style: TextStyle(
+                        style:  GoogleFonts.poppins(
                           fontSize: 18,
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
@@ -149,7 +150,7 @@ class Readingent extends StatelessWidget {
                       ),
                       TextSpan(
                           text: "Cliquez ici",
-                          style: const TextStyle(
+                          style:   GoogleFonts.poppins(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color: Colors.red,

@@ -97,6 +97,15 @@ class _connexionPageState extends State<connexionPage> {
     var _obscureText =
       true; 
  //obscuretext est une propriété qui lorsque elle passe a true obscurcit le champ de texte
+//la fonction future sign in ici indique que lorsque qu'on activeras la fonction
+   Future signIn() async {
+              await FirebaseAuth.instance.signInWithEmailAndPassword(
+                email: emailController.text.trim(),
+                password: passwordController.text.trim(),
+              );
+            }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -200,7 +209,7 @@ class _connexionPageState extends State<connexionPage> {
                                             horizontal: 40, vertical: 14),
                                         child: Column(children: [
                                           ElevatedButton(
-                                              onPressed: () {},
+                                              onPressed: signIn, //la fonction signIn
                                               style: ElevatedButton.styleFrom(
                                                 shape: StadiumBorder(),
                                                 primary: Colors.black,
@@ -238,14 +247,10 @@ class _connexionPageState extends State<connexionPage> {
               ),
             ],
           ),
+          
         ));
 
-    Future signIn() async {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-    }
+          
   }
 }
 

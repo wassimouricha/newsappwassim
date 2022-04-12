@@ -1,21 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/home_screen.dart';
+import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+
+Future main() async {
+
+   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    
+    options: FirebaseOptions(
+      apiKey: "AIzaSyCOMPb2RbsTegqR4zKfSfgGB28iYv_0dRo", // Your apiKey
+      appId: "1:517870258699:android:6ba0fbddbc4b8497e8950e", // Your appId
+      messagingSenderId: "XXX", // Your messagingSenderId
+      projectId: "newsappwassim-d200c",) // Your projectId
+  );
+ 
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
-  
-  
 }
 
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
-  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

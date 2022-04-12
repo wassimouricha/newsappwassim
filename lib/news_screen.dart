@@ -47,7 +47,7 @@ class ReadingNews extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    child: Text("Wassim News App",
+                    child: Text("Wassim News App v1.2",
                         style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black)),
                   ),
                 ],

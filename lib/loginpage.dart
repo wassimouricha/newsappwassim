@@ -144,7 +144,7 @@ class connexionPage extends StatelessWidget {
                                               onPressed: () {},
                                               style: ElevatedButton.styleFrom(
                                                 shape: StadiumBorder(),
-                                                primary: Colors.lightBlue,
+                                                primary: Colors.black,
                                                 padding: EdgeInsets.all(14),
                                               ),
                                               child: Row(

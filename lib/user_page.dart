@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 
@@ -11,7 +12,8 @@ class UserPage extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
 
       appBar: AppBar(
-        title: const Text("Wassim Bouricha"),
+        backgroundColor: Colors.white,
+        title:  Text( "Profil : " + "Wassim Bouricha" , style:  GoogleFonts.poppins(fontSize: 17, color: Colors.black)),
         
       ),
       body:Container(
@@ -31,14 +33,14 @@ class UserPage extends StatelessWidget {
                   Padding(padding: EdgeInsets.symmetric(horizontal: 10)),
                 Text(
                 "Adresse E-mail : ",
-                style: TextStyle(fontSize: 17, color: Colors.black),
+                style:  GoogleFonts.poppins(fontSize: 17, color: Colors.black),
               ),
                   SizedBox(
                 width: 12,
               ),
                 Text(
                 "wbouricha5@gmail.com",
-                style: TextStyle(fontSize: 15, color: Colors.black),
+                style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black),
               ),
               ],),
               

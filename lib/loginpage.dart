@@ -5,6 +5,8 @@ import 'package:newsappwassim/news_api.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/user_page.dart';
 import 'package:newsappwassim/home_screen.dart';
+import 'package:newsappwassim/delayed_animation.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -72,56 +74,169 @@ class _HomeScreenState extends State<Login> {
         titleSpacing: 0,
       ),
       drawer: const NavigationDrawer(),
-      body: LoginWidget(),
+      body: connexionPage(),
     );
   }
 }
 
 //mon widget de login
 
-class LoginWidget extends StatefulWidget {
-  const LoginWidget({Key? key}) : super(key: key);
-
+class connexionPage extends StatelessWidget {
   @override
-  State<LoginWidget> createState() => _LoginWidgetState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.white,
+        
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(
+                  vertical: 40,
+                  horizontal: 30,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    delayedAnimation(
+                      delay: 1000,
+                      child: Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Connectez votre adresse mail",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.poppins(
+                                color: Colors.blue,
+                                fontSize: 25,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            SizedBox(height: 35),
+                            loginForm(),
+                            SizedBox(height: 125),
+                            delayedAnimation(
+                              delay: 3000,
+                              child: Container(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 30, vertical: 10),
+                                height: 200,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Il est recommandé de connecter votre adresse mail afin que nous puissions protéger vos données personnelles.",
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.poppins(
+                                        color: Colors.grey,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    SizedBox(height: 35),
+                                    delayedAnimation(
+                                      delay: 3500,
+                                      child: Container(
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: 40, vertical: 14),
+                                        child: Column(children: [
+                                          ElevatedButton(
+                                              onPressed: () {},
+                                              style: ElevatedButton.styleFrom(
+                                                shape: StadiumBorder(),
+                                                primary: Color(0xFFDB4437),
+                                                padding: EdgeInsets.all(14),
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  SizedBox(width: 10),
+                                                  Text(
+                                                    "Confirmer",
+                                                    style: GoogleFonts.poppins(
+                                                      color: Colors.white,
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  )
+                                                ],
+                                              )),
+                                        ]),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ));
+  }
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
-  final emailcontroller = TextEditingController();
-  final passwordcontroller = TextEditingController();
+class loginForm extends StatefulWidget {
+  @override
+  _loginFormState createState() => _loginFormState();
+}
 
+class _loginFormState extends State<loginForm> {
+  var _obscureText =
+      true; //obscuretext est une propriété qui lorsque elle passe a true obscurcit le champ de texte
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: 30,
+      ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-        
-          SizedBox(
-            height: 10,
+          delayedAnimation(
+            delay: 1500,
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Votre mail',
+                labelStyle: TextStyle(
+                  color: Colors.grey[400],
+                ),
+              ),
+            ),
           ),
-          TextField(
-            controller: emailcontroller,
-            cursorColor: Colors.white,
-            textInputAction: TextInputAction.next,
-            decoration: InputDecoration(labelText: "email"),
+          SizedBox(height: 30),
+          delayedAnimation(
+            delay: 2000,
+            child: TextField(
+              obscureText: _obscureText,
+              decoration: InputDecoration(
+                labelStyle: TextStyle(
+                  color: Colors.grey[400],
+                ),
+                labelText: 'Mot de passe',
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    Icons.visibility,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _obscureText = !_obscureText;
+                    });
+                  },
+                ),
+              ),
+            ),
           ),
-          SizedBox(height: 4,),
-           TextField(
-            controller: passwordcontroller,
-            cursorColor: Colors.white,
-            textInputAction: TextInputAction.next,
-            decoration: InputDecoration(labelText: "Mot de passe"),
-          ),
-          SizedBox(height: 20,),
-          ElevatedButton.icon(  onPressed: (){}, icon: Icon(Icons.lock_open, size: 22,), label: Text("Se connecter", style: TextStyle(fontSize: 20),))
         ],
       ),
     );
-
-    Future signIn() async{
-      
-    }
   }
 }
 
@@ -144,7 +259,7 @@ class NavigationDrawer extends StatelessWidget {
 
 //le widget du header du drawer/sidebar
 Widget buildHeader(BuildContext context) => Material(
-      color: Colors.blue,
+      color: Colors.black,
       child: InkWell(
         onTap: () {
           //pour fermer le navigation drawer
@@ -215,7 +330,7 @@ Widget buildMenuItems(BuildContext context) => Container(
           ),
           InkWell(
             borderRadius: BorderRadius.circular(500),
-            splashColor: Colors.blue,
+            splashColor: Colors.black,
             onTap: () {
               //pour fermer le drawer
               Navigator.of(context).pop();
@@ -223,7 +338,7 @@ Widget buildMenuItems(BuildContext context) => Container(
             child: Center(
               child: CircleAvatar(
                 radius: 20,
-                backgroundColor: Colors.blue,
+                backgroundColor: Colors.black,
                 child: Icon(Icons.arrow_back, color: Colors.white),
               ),
             ),

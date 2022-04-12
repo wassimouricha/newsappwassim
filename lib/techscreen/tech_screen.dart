@@ -283,7 +283,7 @@ class NavigationDrawer extends StatelessWidget {
 
 //le widget du header du drawer/sidebar
 Widget buildHeader(BuildContext context) => Material(
-      color: Colors.blue,
+      color: Colors.black,
       child: InkWell(
         onTap: () {
           //pour fermer le navigation drawer

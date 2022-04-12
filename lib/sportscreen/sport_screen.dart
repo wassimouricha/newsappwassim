@@ -88,48 +88,48 @@ class _SportScreenState extends State<SportScreen> {
         child: Column(
           children: [
               ExpansionTile(title: Text('Sport',
-        style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w300),
+        style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         
         children: [
           ListTile(title: Text('Général',
-        style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w300),
+        style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => HomeScreen())),
         ),
          ListTile(title: Text('Santé',
-        style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w300),
+        style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SanteScreen())),
         ),
           ListTile(title: Text('Science',
-        style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w300),
+        style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => ScienceScreen())),
         ),
            ListTile(title: Text('Tech',
-        style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w300),
+        style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => TechScreen())),
         ),
             ListTile(title: Text('Business',
-        style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w300),
+        style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => BizScreen())),
         ),
          ListTile(title: Text('Entertainement',
-        style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w300),
+        style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
@@ -281,7 +281,7 @@ class NavigationDrawer extends StatelessWidget {
 
 //le widget du header du drawer/sidebar
 Widget buildHeader(BuildContext context) => Material(
-      color: Colors.blue,
+      color: Colors.black,
       child: InkWell(
         onTap: () {
           //pour fermer le navigation drawer
@@ -335,19 +335,19 @@ Widget buildMenuItems(BuildContext context) => Container(
           ListTile(
             leading: const Icon(Icons.home_outlined),
             title:  Text(
-                'Accueil' ,  style:  GoogleFonts.poppins(fontSize: 25, color: Colors.white),), //je peux remplacement pushreplacement par push pour avoir le bouton en haut a gauche pour revenir
+                'Accueil' ,  style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black),), //je peux remplacement pushreplacement par push pour avoir le bouton en haut a gauche pour revenir
             //il faut cependant ajouter Navigator.pop(context); pour que le drawer se ferme lorsque l'on va revenir sur la page
             onTap: () => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => HomeScreen())),
           ),
           ListTile(
             leading: const Icon(Icons.favorite_border),
-            title:  Text('Notifications' ,  style:  GoogleFonts.poppins(fontSize: 25, color: Colors.white),),
+            title:  Text('Notifications' ,  style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black),),
             onTap: () {},
           ),
           ListTile(
            leading: const Icon(Icons.login),
-            title:  Text('Connexion' ,  style:  GoogleFonts.poppins(fontSize: 25, color: Colors.white),),
+            title:  Text('Connexion' ,  style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black),),
             onTap: () => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => Login())),
           ),

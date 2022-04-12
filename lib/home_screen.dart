@@ -14,6 +14,8 @@ import 'package:newsappwassim/messageac.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/user_page.dart';
 import 'package:newsappwassim/loginpage.dart';
+import 'package:newsappwassim/delayed_animation.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 
@@ -76,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Container(
                   child: Text("Wassim News App v1.2",
-                      style: TextStyle(fontSize: 15, color: Colors.black)),
+                      style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black)),
                 ),
               ],
             )),
@@ -93,35 +95,35 @@ class _HomeScreenState extends State<HomeScreen> {
           
           children: [
              ExpansionTile(title: Text('Général',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+        style:  GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
         textAlign: TextAlign.center,
         
         ),
         
         children: [
           ListTile(title: Text('Sport',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+        style:  GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SportScreen())),
         ),
           ListTile(title: Text('Santé',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+        style:  GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SanteScreen())),
         ),
            ListTile(title: Text('Science',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+        style:  GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => ScienceScreen())),
         ),
             ListTile(title: Text('Tech',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+        style:  GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
@@ -129,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         
             ListTile(title: Text('Business',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+        style:  GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
@@ -137,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         
             ListTile(title: Text('Entertainement',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+        style:  GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
@@ -221,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.symmetric(vertical: 5),
                 child: Text(
                   model.title,
-                  style: TextStyle(
+                  style:  GoogleFonts.poppins(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
                   ),
@@ -237,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         ("Auteur: ") + getTruncatedContent(model.author,20),
-                        style: TextStyle(
+                        style:  GoogleFonts.poppins(
                           fontSize: 12,
                           color: Colors.grey[600],
                         ),
@@ -245,7 +247,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(width: 1,),
                       Text(
                         ("Publié le ") + getTruncatedContent(model.publishedAt,10),
-                        style: TextStyle(
+                        style:  GoogleFonts.poppins(
                           fontSize: 12,
                           color: Colors.grey[600],
                         ),
@@ -258,6 +260,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  //ici je fais ma fonction getTruncatedContent afin de cacher la fin du texte trop conséquent par rapport à mon container 
+  //si la longueur de mon text est supérieur au chiffre que j'indique alors le texte sera caché + j'ajoute "..." afin de montrer que le texte continue 
    String getTruncatedContent(String text, int truncatedNumber) {
     return text.length > truncatedNumber
         ? text.substring(0, truncatedNumber) + "..."
@@ -312,14 +317,14 @@ Widget buildHeader(BuildContext context) => Material(
               ),
               Text(
                 "Wassim Bouricha",
-                style: TextStyle(fontSize: 25, color: Colors.white),
+                style:  GoogleFonts.poppins(fontSize: 25, color: Colors.white),
               ),
               SizedBox(
                 height: 12,
               ),
               Text(
                 "wbouricha5@gmail.com",
-                style: TextStyle(fontSize: 15, color: Colors.white),
+                style:  GoogleFonts.poppins(fontSize: 15, color: Colors.white),
               ),
               SizedBox(
                 height: 12,
@@ -338,20 +343,20 @@ Widget buildMenuItems(BuildContext context) => Container(
         children: [
           ListTile(
             leading: const Icon(Icons.home_outlined),
-            title: const Text(
-                'Accueil'), //je peux remplacement pushreplacement par push pour avoir le bouton en haut a gauche pour revenir
+            title:  Text(
+                'Accueil',  style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black), ), //je peux remplacement pushreplacement par push pour avoir le bouton en haut a gauche pour revenir
             //il faut cependant ajouter Navigator.pop(context); pour que le drawer se ferme lorsque l'on va revenir sur la page
             onTap: () => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => HomeScreen())),
           ),
           ListTile(
             leading: const Icon(Icons.favorite_border),
-            title: const Text('Notifications'),
+            title:  Text('Notifications' ,  style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black),), 
             onTap: () {},
           ),
           ListTile(
             leading: const Icon(Icons.login),
-            title: const Text('Connexion'),
+            title:  Text('Connexion',  style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black),),
             onTap: () => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => Login())),
           ),

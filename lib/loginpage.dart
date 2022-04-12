@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:newsappwassim/model.dart';
@@ -7,6 +8,8 @@ import 'package:newsappwassim/user_page.dart';
 import 'package:newsappwassim/home_screen.dart';
 import 'package:newsappwassim/delayed_animation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth_web/firebase_auth_web.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -81,12 +84,23 @@ class _HomeScreenState extends State<Login> {
 
 //mon widget de login
 
-class connexionPage extends StatelessWidget {
+class connexionPage extends StatefulWidget {
+  @override
+  State<connexionPage> createState() => _connexionPageState();
+}
+
+class _connexionPageState extends State<connexionPage> {
+  final emailController = TextEditingController();
+
+  final passwordController = TextEditingController();
+
+    var _obscureText =
+      true; 
+ //obscuretext est une propriété qui lorsque elle passe a true obscurcit le champ de texte
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -114,7 +128,52 @@ class connexionPage extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: 35),
-                            loginForm(),
+                                                          Container(
+                                    margin: EdgeInsets.symmetric(
+                                      horizontal: 30,
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        delayedAnimation(
+                                          delay: 1500,
+                                          child: TextField(
+                                            controller: emailController,
+                                            decoration: InputDecoration(
+                                              labelText: 'Votre mail',
+                                              labelStyle: TextStyle(
+                                                color: Colors.grey[400],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(height: 30),
+                                        delayedAnimation(
+                                          delay: 2000,
+                                          child: TextField(
+                                            controller: passwordController,
+                                            obscureText: _obscureText,
+                                            decoration: InputDecoration(
+                                              labelStyle: TextStyle(
+                                                color: Colors.grey[400],
+                                              ),
+                                              labelText: 'Mot de passe',
+                                              suffixIcon: IconButton(
+                                                icon: Icon(
+                                                  Icons.visibility,
+                                                  color: Colors.black,
+                                                ),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    _obscureText = !_obscureText;
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                             SizedBox(height: 125),
                             delayedAnimation(
                               delay: 3000,
@@ -180,65 +239,17 @@ class connexionPage extends StatelessWidget {
             ],
           ),
         ));
+
+    Future signIn() async {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+    }
   }
 }
 
-class loginForm extends StatefulWidget {
-  @override
-  _loginFormState createState() => _loginFormState();
-}
 
-class _loginFormState extends State<loginForm> {
-  var _obscureText =
-      true; //obscuretext est une propriété qui lorsque elle passe a true obscurcit le champ de texte
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: 30,
-      ),
-      child: Column(
-        children: [
-          delayedAnimation(
-            delay: 1500,
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Votre mail',
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: 30),
-          delayedAnimation(
-            delay: 2000,
-            child: TextField(
-              obscureText: _obscureText,
-              decoration: InputDecoration(
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-                labelText: 'Mot de passe',
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    Icons.visibility,
-                    color: Colors.black,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _obscureText = !_obscureText;
-                    });
-                  },
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 //mon drawer = ma sidebar
 

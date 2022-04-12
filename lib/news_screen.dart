@@ -4,6 +4,7 @@ import 'package:newsappwassim/const.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/gestures.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ReadingNews extends StatelessWidget {
   final NewsApiModel model;
@@ -47,7 +48,7 @@ class ReadingNews extends StatelessWidget {
                   ),
                   Container(
                     child: Text("Wassim News App",
-                        style: TextStyle(fontSize: 15, color: Colors.black)),
+                        style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black)),
                   ),
                 ],
               )),
@@ -64,7 +65,7 @@ class ReadingNews extends StatelessWidget {
                   width: size.width / 1.05,
                   child: Text(
                     model.title,
-                    style: TextStyle(
+                    style:  GoogleFonts.poppins(
                       color: Color.fromARGB(255, 0, 0, 0),
                       fontSize: 25,
                       fontWeight: FontWeight.w500,
@@ -85,7 +86,7 @@ class ReadingNews extends StatelessWidget {
                         )
                       : Text(
                           "Impossible de charger l'image",
-                          style: TextStyle(
+                          style:  GoogleFonts.poppins(
                             color: Colors.white,
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
@@ -97,10 +98,10 @@ class ReadingNews extends StatelessWidget {
                   width: size.width / 1.05,
                   child: Text(
                     getTruncatedContent(model.content,200),
-                    style: TextStyle(
+                    style:  GoogleFonts.poppins(
                       color: Colors.black,
                       fontSize: 20,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w400,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -121,7 +122,7 @@ class ReadingNews extends StatelessWidget {
                         
                            Text(
                         ("Auteur: ") + getTruncatedContent(model.author,20),
-                        style: TextStyle(
+                        style:  GoogleFonts.poppins(
                           fontSize: 13,
                           color: Colors.black,
                         ),
@@ -149,15 +150,15 @@ class ReadingNews extends StatelessWidget {
                   RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(children: [
-                      const TextSpan(
+                       TextSpan(
                         text: "Pour lire la suite de l'article  ",
-                        style: TextStyle(fontSize: 18,
+                        style:  GoogleFonts.poppins(fontSize: 18,
                         color: Colors.black,
                       fontWeight: FontWeight.w500,),
                       ),
                       TextSpan(
                           text: "Cliquez ici",
-                          style: const TextStyle(
+                          style:   GoogleFonts.poppins(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color: Colors.red,

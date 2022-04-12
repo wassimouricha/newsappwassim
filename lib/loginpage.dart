@@ -105,10 +105,10 @@ class connexionPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Connectez votre adresse mail",
+                              "Connectez vous avec votre adresse mail",
                               textAlign: TextAlign.center,
                               style: GoogleFonts.poppins(
-                                color: Colors.blue,
+                                color: Colors.black,
                                 fontSize: 25,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -144,7 +144,7 @@ class connexionPage extends StatelessWidget {
                                               onPressed: () {},
                                               style: ElevatedButton.styleFrom(
                                                 shape: StadiumBorder(),
-                                                primary: Color(0xFFDB4437),
+                                                primary: Colors.lightBlue,
                                                 padding: EdgeInsets.all(14),
                                               ),
                                               child: Row(

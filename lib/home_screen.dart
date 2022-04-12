@@ -336,7 +336,7 @@ Widget buildHeader(BuildContext context) {
                 height: 12,
               ),
               Text(
-                user.email!,
+                user.email ?? "pas de mail ",
                 style: GoogleFonts.poppins(fontSize: 15, color: Colors.white),
               ),
               const SizedBox(

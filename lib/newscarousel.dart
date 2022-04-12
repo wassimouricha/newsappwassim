@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:newsappwassim/model.dart';
-import 'package:newsappwassim/news_api.dart';
 import 'package:newsappwassim/values.dart';
 
-class NewsCarousel extends StatelessWidget {
-  NewsCarousel({Key? key}) : super(key: key);
+class NewsCarousel extends StatefulWidget {
+  const NewsCarousel({Key? key}) : super(key: key);
+
+  @override
+  State<NewsCarousel> createState() => _NewsCarouselState();
+}
+
+class _NewsCarouselState extends State<NewsCarousel> {
   final StaticValues staticValues = StaticValues();
-   CarouselController _buttonCarouselController = CarouselController();
+
+   final CarouselController _buttonCarouselController = CarouselController();
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -16,13 +22,13 @@ class NewsCarousel extends StatelessWidget {
       options: CarouselOptions(
         height: 150.0,
         autoPlay: true,
-        autoPlayInterval: Duration(seconds: 3),
+        autoPlayInterval: const Duration(seconds: 3),
       ),
       items: staticValues.news.map((newsItem) {
         return Builder(
           builder: (BuildContext context) {
             return Container(
-              margin: EdgeInsets.symmetric(horizontal: 5),
+              margin: const EdgeInsets.symmetric(horizontal: 5),
               child: Stack(
                 children: [
                   ClipRRect(
@@ -39,7 +45,7 @@ class NewsCarousel extends StatelessWidget {
                     height: 150,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                         begin: Alignment.topCenter, 
                         end: Alignment.bottomCenter,
                         colors: [
@@ -51,9 +57,9 @@ class NewsCarousel extends StatelessWidget {
                     ),),
                     Align(alignment: Alignment.bottomCenter,
                     child: Container(
-                      margin: EdgeInsets.all(20),
+                      margin: const EdgeInsets.all(20),
                       child: Text(newsItem.title, 
-                      style: TextStyle(fontSize: 15,color: Colors.white),
+                      style: const TextStyle(fontSize: 15,color: Colors.white),
                       
                       ),
                       ),),
@@ -65,5 +71,4 @@ class NewsCarousel extends StatelessWidget {
       }).toList(),
     );
   }
-  
 }

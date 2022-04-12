@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:newsappwassim/techscreen/modeltech.dart';
@@ -8,13 +10,13 @@ import 'package:newsappwassim/santescreen/sante_screen.dart';
 import 'package:newsappwassim/businesscreen/biz_screen.dart';
 import 'package:newsappwassim/sportscreen/sport_screen.dart';
 import 'package:newsappwassim/entertainementscreen/ent_screen.dart';
-import 'package:newsappwassim/sciencescreen/science_screen.dart';
-import 'package:newsappwassim/newscarousel.dart';
 import 'package:newsappwassim/messageac.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/user_page.dart';
 import 'package:newsappwassim/loginpage.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../sciencescreen/science_screen.dart';
 
 class TechScreen extends StatefulWidget {
   const TechScreen({Key? key}) : super(key: key);
@@ -61,28 +63,24 @@ class _TechScreenState extends State<TechScreen> {
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         title: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25),
+            padding: const EdgeInsets.symmetric(horizontal: 25),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  child: Builder(
-                    builder: (context) => IconButton(
-                      icon: Image.asset("image/pngegg.png"),
-                      onPressed: () => Scaffold.of(context).openDrawer(),
-                    ),
+                Builder(
+                  builder: (context) => IconButton(
+                    icon: Image.asset("image/pngegg.png"),
+                    onPressed: () => Scaffold.of(context).openDrawer(),
                   ),
                 ),
-                Container(
-                  child: Text("Wassim News App v1.2",
-                      style: TextStyle(fontSize: 15, color: Colors.black)),
-                ),
+                const Text("Wassim News App v1.2",
+                    style: TextStyle(fontSize: 15, color: Colors.black)),
               ],
             )),
         titleSpacing: 0,
       ),
       drawer: const NavigationDrawer(),
-      body: Container(
+      body: SizedBox(
         height: size.height,
         width: size.width,
         child: Column(
@@ -98,35 +96,35 @@ class _TechScreenState extends State<TechScreen> {
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => HomeScreen())),
+                MaterialPageRoute(builder: (context) => const HomeScreen())),
         ),
          ListTile(title: Text('Sport',
         style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => SportScreen())),
+                MaterialPageRoute(builder: (context) => const SportScreen())),
         ),
           ListTile(title: Text('Science',
         style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => ScienceScreen())),
+                MaterialPageRoute(builder: (context) => const ScienceScreen())),
         ),
           ListTile(title: Text('Santé',
         style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => SanteScreen())),
+                MaterialPageRoute(builder: (context) => const SanteScreen())),
         ),
         ListTile(title: Text('Business',
         style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => BizScreen())),
+                MaterialPageRoute(builder: (context) => const BizScreen())),
         ),
         
             ListTile(title: Text('Entertainement',
@@ -134,35 +132,33 @@ class _TechScreenState extends State<TechScreen> {
          textAlign: TextAlign.center,
         ),
         onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => EntScreen())),
+                MaterialPageRoute(builder: (context) => const EntScreen())),
         ),
 
         ],
         ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            WelcomeWidget(),
-            SizedBox(
+            const WelcomeWidget(),
+            const SizedBox(
               height: 10,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             isLoading
-                ? Container(
+                ? SizedBox(
                     height: size.height / 20,
                     width: size.height / 20,
-                    child: CircularProgressIndicator(),
+                    child: const CircularProgressIndicator(),
                   )
                 : Expanded(
-                    child: Container(
-                      child: ListView.builder(
-                        itemCount: techList!.length,
-                        itemBuilder: (context, index) {
-                          return listItems(size, techList![index]);
-                        },
-                      ),
+                    child: ListView.builder(
+                      itemCount: techList!.length,
+                      itemBuilder: (context, index) {
+                        return listItems(size, techList![index]);
+                      },
                     ),
                   ),
           ],
@@ -183,7 +179,7 @@ class _TechScreenState extends State<TechScreen> {
           ),
         ),
         child: Container(
-          padding: EdgeInsets.only(bottom: 10),
+          padding: const EdgeInsets.only(bottom: 10),
           width: size.width / 1.15,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10), color: Colors.grey[200]),
@@ -191,8 +187,8 @@ class _TechScreenState extends State<TechScreen> {
             children: [
               Container(
                 //le container de mon image
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                margin: EdgeInsets.symmetric(vertical: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                margin: const EdgeInsets.symmetric(vertical: 5),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.grey[200]),
@@ -201,12 +197,12 @@ class _TechScreenState extends State<TechScreen> {
                         model.imageUrl,
                         fit: BoxFit.cover,
                       )
-                    : Text("Impossible de charger"),
+                    : const Text("Impossible de charger"),
               ),
               Container(
                 //le container de mon titre
                 width: size.width / 1.1,
-                padding: EdgeInsets.symmetric(vertical: 5),
+                padding: const EdgeInsets.symmetric(vertical: 5),
                 child: Text(
                   model.title,
                   style: GoogleFonts.poppins(
@@ -229,7 +225,7 @@ class _TechScreenState extends State<TechScreen> {
               Container(
                   //Mon container pour la partie date de publication en bas à droite
                   width: size.width / 1.1,
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                  padding: const EdgeInsets.symmetric(vertical: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -300,26 +296,26 @@ Widget buildHeader(BuildContext context) => Material(
           ),
           child: Column(
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 radius: 52,
                 backgroundImage: NetworkImage(
                     'https://media-exp1.licdn.com/dms/image/D4E03AQHKyal9OiD12g/profile-displayphoto-shrink_800_800/0/1648624925960?e=2147483647&v=beta&t=NimRdFpaBcn7mrK3Abem2USfCRhEsZ8K7-h8NAQ9xYY'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               Text(
                 "Wassim Bouricha",
                 style: GoogleFonts.poppins(fontSize: 25, color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               Text(
                 "wbouricha5@gmail.com",
                 style: GoogleFonts.poppins(fontSize: 15, color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
             ],
@@ -329,45 +325,42 @@ Widget buildHeader(BuildContext context) => Material(
     );
 
 //le widget du menu du drawer/sidebar
-Widget buildMenuItems(BuildContext context) => Container(
-      
-      child: Wrap(
-        runSpacing: 16, //espace vertical
-        children: [
-          ListTile(
-            leading: const Icon(Icons.home_outlined),
-            title:  Text(
-                'Accueil' ,  style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black),), //je peux remplacement pushreplacement par push pour avoir le bouton en haut a gauche pour revenir
-            //il faut cependant ajouter Navigator.pop(context); pour que le drawer se ferme lorsque l'on va revenir sur la page
-            onTap: () => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => HomeScreen())),
+Widget buildMenuItems(BuildContext context) => Wrap(
+  runSpacing: 16, //espace vertical
+  children: [
+    ListTile(
+      leading: const Icon(Icons.home_outlined),
+      title:  Text(
+          'Accueil' ,  style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black),), //je peux remplacement pushreplacement par push pour avoir le bouton en haut a gauche pour revenir
+      //il faut cependant ajouter Navigator.pop(context); pour que le drawer se ferme lorsque l'on va revenir sur la page
+      onTap: () => Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomeScreen())),
+    ),
+    ListTile(
+      leading: const Icon(Icons.favorite_border),
+      title:  Text('Notifications' ,  style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black),),
+      onTap: () {},
+    ),
+    ListTile(
+     leading: const Icon(Icons.login),
+      title:  Text('Connexion',  style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black),),
+      onTap: () => Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const Login())),
+    ),
+      InkWell(
+          borderRadius: BorderRadius.circular(500),
+          splashColor: Colors.blue,
+          onTap: () {
+            //pour fermer le drawer
+            Navigator.of(context).pop();
+          },
+          child: const Center(
+            child: CircleAvatar(
+            radius: 20,
+            backgroundColor: Colors.blue,
+            child: Icon(Icons.arrow_back, color: Colors.white),
           ),
-          ListTile(
-            leading: const Icon(Icons.favorite_border),
-            title:  Text('Notifications' ,  style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black),),
-            onTap: () {},
-          ),
-          ListTile(
-           leading: const Icon(Icons.login),
-            title:  Text('Connexion',  style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black),),
-            onTap: () => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => Login())),
-          ),
-            InkWell(
-                borderRadius: BorderRadius.circular(500),
-                splashColor: Colors.blue,
-                onTap: () {
-                  //pour fermer le drawer
-                  Navigator.of(context).pop();
-                },
-                child: Center(
-                  child: CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.blue,
-                  child: Icon(Icons.arrow_back, color: Colors.white),
-                ),
-              ),),
-      
-        ],
-      ),
-    );
+        ),),
+
+  ],
+);

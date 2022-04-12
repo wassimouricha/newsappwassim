@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/techscreen/modeltech.dart';
 import 'package:newsappwassim/const.dart';
-import 'package:newsappwassim/const.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/gestures.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,43 +30,39 @@ class Readingtech extends StatelessWidget {
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
           title: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          color: Colors.black,
-                        ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.black,
                       ),
                     ),
                   ),
-                  Container(
-                    child: Text("Wassim News App v1.2",
-                        style: GoogleFonts.poppins(fontSize: 15, color: Colors.black)),
-                  ),
+                  Text("Wassim News App v1.2",
+                      style: GoogleFonts.poppins(fontSize: 15, color: Colors.black)),
                 ],
               )),
           titleSpacing: 0,
         ),
-        body: Container(
+        body: SizedBox(
           height: size.height,
           width: size.width,
           child: SingleChildScrollView(
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   width: size.width / 1.05,
                   child: Text(
                     model.title,
                     style: GoogleFonts.poppins(
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color: const Color.fromARGB(255, 0, 0, 0),
                       fontSize: 28,
                       fontWeight: FontWeight.w500,
                     ),
@@ -91,7 +86,7 @@ class Readingtech extends StatelessWidget {
                           ),
                         ),
                 ),
-                Container(
+                SizedBox(
                   width: size.width / 1.05,
                   child: Text(
                     getTruncatedContent(model.content, 200),
@@ -102,7 +97,7 @@ class Readingtech extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                  Row(
@@ -110,13 +105,13 @@ class Readingtech extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     
                     children: [
-                      Container(
+                      SizedBox(
                         width: size.width / 1.05,
                         child: 
                       Column( children:[
                            Text(
                         ("Auteur: ") + getTruncatedContent(model.author,20),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w400,
                           color: Colors.black,
@@ -134,8 +129,8 @@ class Readingtech extends StatelessWidget {
                      
                     ],
                   ),
-                    SizedBox(height: 5,),
-                Container(
+                    const SizedBox(height: 5,),
+                SizedBox(
                   width: size.width / 1.05,
                   child: RichText(
                     textAlign: TextAlign.center,
@@ -163,7 +158,7 @@ class Readingtech extends StatelessWidget {
                     ]),
                   ),
                 ),
-                SizedBox(height: 5,),
+                const SizedBox(height: 5,),
               ],
             ),
           ),

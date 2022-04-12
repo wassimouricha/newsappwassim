@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/home_screen.dart';
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 
@@ -11,17 +10,19 @@ Future main() async {
 
   await Firebase.initializeApp(
     
-    options: FirebaseOptions(
+    options: const FirebaseOptions(
       apiKey: "AIzaSyCOMPb2RbsTegqR4zKfSfgGB28iYv_0dRo", // Your apiKey
       appId: "1:517870258699:android:6ba0fbddbc4b8497e8950e", // Your appId
       messagingSenderId: "XXX", // Your messagingSenderId
       projectId: "newsappwassim-d200c",) // Your projectId
   );
  
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
 
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
@@ -22,6 +24,7 @@ Future<List<BizApiModel>> getNews() async {
 
     return bizList;
   } else {
+    
     print("erreur");
     return [];
   }

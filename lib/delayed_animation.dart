@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -28,14 +30,14 @@ class _delayedAnimationState extends State<delayedAnimation>
     _controller = AnimationController(
       vsync:
           this, // j'indique avec le vsync: this que je veux que mes différentes animations soit synchronisées les unes avec les autres
-      duration: Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 800),
     );
 
     final curve =
         CurvedAnimation(parent: _controller, curve: Curves.decelerate);
 
     _animOffset = Tween<Offset>(
-      begin: Offset(0.0, -0.35), //le offset est mon parametre de décalage
+      begin: const Offset(0.0, -0.35), //le offset est mon parametre de décalage
       end: Offset.zero,
     ).animate(curve);
 
@@ -46,6 +48,7 @@ class _delayedAnimationState extends State<delayedAnimation>
     }); //avec timer je vais preciser un delai pour l'execution de mon code, le code sera executé une fois que le delay sera écoulé
   }
 
+  @override
   Widget build(BuildContext context) {
     return FadeTransition(
       opacity: _controller,

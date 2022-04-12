@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, camel_case_types
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/const.dart';
@@ -8,8 +10,6 @@ import 'package:newsappwassim/user_page.dart';
 import 'package:newsappwassim/home_screen.dart';
 import 'package:newsappwassim/delayed_animation.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth_web/firebase_auth_web.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -47,7 +47,6 @@ class _HomeScreenState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: getColors[1],
@@ -56,28 +55,24 @@ class _HomeScreenState extends State<Login> {
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         title: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25),
+            padding: const EdgeInsets.symmetric(horizontal: 25),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  child: Builder(
-                    builder: (context) => IconButton(
-                      icon: Image.asset("image/drawer.png"),
-                      onPressed: () => Scaffold.of(context).openDrawer(),
-                    ),
+                Builder(
+                  builder: (context) => IconButton(
+                    icon: Image.asset("image/drawer.png"),
+                    onPressed: () => Scaffold.of(context).openDrawer(),
                   ),
                 ),
-                Container(
-                  child: Text("Wassim News App v1.2",
-                      style: TextStyle(fontSize: 15, color: Colors.black)),
-                ),
+                const Text("Wassim News App v1.2",
+                    style: TextStyle(fontSize: 15, color: Colors.black)),
               ],
             )),
         titleSpacing: 0,
       ),
       drawer: const NavigationDrawer(),
-      body: connexionPage(),
+      body: const connexionPage(),
     );
   }
 }
@@ -85,6 +80,8 @@ class _HomeScreenState extends State<Login> {
 //mon widget de login
 
 class connexionPage extends StatefulWidget {
+  const connexionPage({Key? key}) : super(key: key);
+
   @override
   State<connexionPage> createState() => _connexionPageState();
 }
@@ -114,7 +111,7 @@ class _connexionPageState extends State<connexionPage> {
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.symmetric(
+                margin: const EdgeInsets.symmetric(
                   vertical: 40,
                   horizontal: 30,
                 ),
@@ -123,123 +120,121 @@ class _connexionPageState extends State<connexionPage> {
                   children: [
                     delayedAnimation(
                       delay: 1000,
-                      child: Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Connectez vous avec votre adresse mail",
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.poppins(
-                                color: Colors.black,
-                                fontSize: 25,
-                                fontWeight: FontWeight.w500,
-                              ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Connectez vous avec votre adresse mail",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500,
                             ),
-                            SizedBox(height: 35),
-                                                          Container(
-                                    margin: EdgeInsets.symmetric(
-                                      horizontal: 30,
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        delayedAnimation(
-                                          delay: 1500,
-                                          child: TextField(
-                                            controller: emailController,
-                                            decoration: InputDecoration(
-                                              labelText: 'Votre mail',
-                                              labelStyle: TextStyle(
-                                                color: Colors.grey[400],
-                                              ),
+                          ),
+                          const SizedBox(height: 35),
+                                                        Container(
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: 30,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      delayedAnimation(
+                                        delay: 1500,
+                                        child: TextField(
+                                          controller: emailController,
+                                          decoration: InputDecoration(
+                                            labelText: 'Votre mail',
+                                            labelStyle: TextStyle(
+                                              color: Colors.grey[400],
                                             ),
                                           ),
                                         ),
-                                        SizedBox(height: 30),
-                                        delayedAnimation(
-                                          delay: 2000,
-                                          child: TextField(
-                                            controller: passwordController,
-                                            obscureText: _obscureText,
-                                            decoration: InputDecoration(
-                                              labelStyle: TextStyle(
-                                                color: Colors.grey[400],
+                                      ),
+                                      const SizedBox(height: 30),
+                                      delayedAnimation(
+                                        delay: 2000,
+                                        child: TextField(
+                                          controller: passwordController,
+                                          obscureText: _obscureText,
+                                          decoration: InputDecoration(
+                                            labelStyle: TextStyle(
+                                              color: Colors.grey[400],
+                                            ),
+                                            labelText: 'Mot de passe',
+                                            suffixIcon: IconButton(
+                                              icon: const Icon(
+                                                Icons.visibility,
+                                                color: Colors.black,
                                               ),
-                                              labelText: 'Mot de passe',
-                                              suffixIcon: IconButton(
-                                                icon: Icon(
-                                                  Icons.visibility,
-                                                  color: Colors.black,
-                                                ),
-                                                onPressed: () {
-                                                  setState(() {
-                                                    _obscureText = !_obscureText;
-                                                  });
-                                                },
-                                              ),
+                                              onPressed: () {
+                                                setState(() {
+                                                  _obscureText = !_obscureText;
+                                                });
+                                              },
                                             ),
                                           ),
                                         ),
-                                      ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                          const SizedBox(height: 125),
+                          delayedAnimation(
+                            delay: 3000,
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 30, vertical: 10),
+                              height: 200,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "Il est recommandé de connecter votre adresse mail afin que nous puissions protéger vos données personnelles.",
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.grey,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w400,
                                     ),
                                   ),
-                            SizedBox(height: 125),
-                            delayedAnimation(
-                              delay: 3000,
-                              child: Container(
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 10),
-                                height: 200,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "Il est recommandé de connecter votre adresse mail afin que nous puissions protéger vos données personnelles.",
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.poppins(
-                                        color: Colors.grey,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w400,
-                                      ),
+                                  const SizedBox(height: 35),
+                                  delayedAnimation(
+                                    delay: 3500,
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 40, vertical: 14),
+                                      child: Column(children: [
+                                        ElevatedButton(
+                                            onPressed: signIn, //la fonction signIn
+                                            style: ElevatedButton.styleFrom(
+                                              shape: const StadiumBorder(),
+                                              primary: Colors.black,
+                                              padding: const EdgeInsets.all(14),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const SizedBox(width: 10),
+                                                Text(
+                                                  "Confirmer",
+                                                  style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w500,
+                                                  ),
+                                                )
+                                              ],
+                                            )),
+                                      ]),
                                     ),
-                                    SizedBox(height: 35),
-                                    delayedAnimation(
-                                      delay: 3500,
-                                      child: Container(
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 40, vertical: 14),
-                                        child: Column(children: [
-                                          ElevatedButton(
-                                              onPressed: signIn, //la fonction signIn
-                                              style: ElevatedButton.styleFrom(
-                                                shape: StadiumBorder(),
-                                                primary: Colors.black,
-                                                padding: EdgeInsets.all(14),
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  SizedBox(width: 10),
-                                                  Text(
-                                                    "Confirmer",
-                                                    style: GoogleFonts.poppins(
-                                                      color: Colors.white,
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                                  )
-                                                ],
-                                              )),
-                                        ]),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -291,7 +286,7 @@ Widget buildHeader(BuildContext context) => Material(
             bottom: 24,
           ),
           child: Column(
-            children: [
+            children: const [
               CircleAvatar(
                 radius: 52,
                 backgroundImage: NetworkImage(
@@ -321,47 +316,45 @@ Widget buildHeader(BuildContext context) => Material(
     );
 
 //le widget du menu du drawer/sidebar
-Widget buildMenuItems(BuildContext context) => Container(
-      child: Wrap(
-        runSpacing: 16, //espace vertical
-        children: [
-          ListTile(
-            leading: const Icon(Icons.home_outlined),
-            title: const Text(
-                'Accueil'), //je peux remplacement pushreplacement par push pour avoir le bouton en haut a gauche pour revenir
-            //il faut cependant ajouter Navigator.pop(context); pour que le drawer se ferme lorsque l'on va revenir sur la page
-            onTap: () => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => HomeScreen())),
-          ),
-          ListTile(
-            leading: const Icon(Icons.favorite_border),
-            title: const Text('Notifications'),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: const Icon(Icons.login),
-            title: const Text('Connexion'),
-            onTap: () => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => Login())),
-          ),
-          InkWell(
-            borderRadius: BorderRadius.circular(500),
-            splashColor: Colors.black,
-            onTap: () {
-              //pour fermer le drawer
-              Navigator.of(context).pop();
-            },
-            child: Center(
-              child: CircleAvatar(
-                radius: 20,
-                backgroundColor: Colors.black,
-                child: Icon(Icons.arrow_back, color: Colors.white),
-              ),
-            ),
-          ),
-          const Divider(
-            color: Colors.black,
-          ),
-        ],
+Widget buildMenuItems(BuildContext context) => Wrap(
+  runSpacing: 16, //espace vertical
+  children: [
+    ListTile(
+      leading: const Icon(Icons.home_outlined),
+      title: const Text(
+          'Accueil'), //je peux remplacement pushreplacement par push pour avoir le bouton en haut a gauche pour revenir
+      //il faut cependant ajouter Navigator.pop(context); pour que le drawer se ferme lorsque l'on va revenir sur la page
+      onTap: () => Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomeScreen())),
+    ),
+    ListTile(
+      leading: const Icon(Icons.favorite_border),
+      title: const Text('Notifications'),
+      onTap: () {},
+    ),
+    ListTile(
+      leading: const Icon(Icons.login),
+      title: const Text('Connexion'),
+      onTap: () => Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const Login())),
+    ),
+    InkWell(
+      borderRadius: BorderRadius.circular(500),
+      splashColor: Colors.black,
+      onTap: () {
+        //pour fermer le drawer
+        Navigator.of(context).pop();
+      },
+      child: const Center(
+        child: CircleAvatar(
+          radius: 20,
+          backgroundColor: Colors.black,
+          child: Icon(Icons.arrow_back, color: Colors.white),
+        ),
       ),
-    );
+    ),
+    const Divider(
+      color: Colors.black,
+    ),
+  ],
+);

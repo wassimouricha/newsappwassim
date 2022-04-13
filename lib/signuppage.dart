@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/const.dart';
+import 'package:newsappwassim/home_screen.dart';
 import 'package:newsappwassim/model.dart';
 import 'package:newsappwassim/news_api.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
@@ -48,7 +49,6 @@ class _HomeScreenState extends State<Signup> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: getColors[1],
       appBar: AppBar(
@@ -92,17 +92,33 @@ class _connexionPageState extends State<connexionPage> {
 
   final passwordController = TextEditingController();
 
-    var _obscureText =
-      true; 
- //obscuretext est une propriété qui lorsque elle passe a true obscurcit le champ de texte
-//la fonction future sign in ici indique que lorsque qu'on activeras la fonction
-   Future signIn() async {
-              await FirebaseAuth.instance.signInWithEmailAndPassword(
-                email: emailController.text.trim(),
-                password: passwordController.text.trim(),
-              );
-            }
-
+  var _obscureText = true;
+  //obscuretext est une propriété qui lorsque elle passe a true obscurcit le champ de texte
+//la fonction future sign up ici indique que lorsque qu'on activeras la fonction
+  Future signUp() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) =>  Scaffold(
+          body: Padding(padding: const EdgeInsets.all(20.0), child: Column(children: [   Text(
+              'inscription en cours',
+              style: Theme.of(context).textTheme.headline6,
+            ),const CircularProgressIndicator( semanticsLabel:" inscription")]),) 
+            ));
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+    } on FirebaseAuthException catch (e) {
+      //si il y a une erreur alors on va imprimer dans le terminal l'erreur
+      print(e);
+    }
+      //navigator.of(context) ne fonctionne pas !
+        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const HomeScreen()));
+  
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -134,77 +150,77 @@ class _connexionPageState extends State<connexionPage> {
                             ),
                           ),
                           const SizedBox(height: 35),
-                                                        Container(
-                                  margin: const EdgeInsets.symmetric(
-                                    horizontal: 30,
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      delayedAnimation(
-                                        delay: 1500,
-                                        child: TextField(
-                                          controller: emailController,
-                                          decoration: InputDecoration(
-                                            labelText: 'Votre mail',
-                                            labelStyle: TextStyle(
-                                              color: Colors.grey[400],
-                                            ),
-                                          ),
-                                        ),
+                          Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 30,
+                            ),
+                            child: Column(
+                              children: [
+                                delayedAnimation(
+                                  delay: 1500,
+                                  child: TextField(
+                                    controller: emailController,
+                                    decoration: InputDecoration(
+                                      labelText: 'Votre mail',
+                                      labelStyle: TextStyle(
+                                        color: Colors.grey[400],
                                       ),
-                                      const SizedBox(height: 30),
-                                      delayedAnimation(
-                                        delay: 2000,
-                                        child: TextField(
-                                          controller: passwordController,
-                                          obscureText: _obscureText,
-                                          decoration: InputDecoration(
-                                            labelStyle: TextStyle(
-                                              color: Colors.grey[400],
-                                            ),
-                                            labelText: 'Mot de passe',
-                                            suffixIcon: IconButton(
-                                              icon: const Icon(
-                                                Icons.visibility,
-                                                color: Colors.black,
-                                              ),
-                                              onPressed: () {
-                                                setState(() {
-                                                  _obscureText = !_obscureText;
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 30),
-                                       delayedAnimation(
-                                        delay: 2000,
-                                        child: TextField(
-                                          controller: passwordController,
-                                          obscureText: _obscureText,
-                                          decoration: InputDecoration(
-                                            labelStyle: TextStyle(
-                                              color: Colors.grey[400],
-                                            ),
-                                            labelText: 'Confirmez votre Mot de passe',
-                                            suffixIcon: IconButton(
-                                              icon: const Icon(
-                                                Icons.visibility,
-                                                color: Colors.black,
-                                              ),
-                                              onPressed: () {
-                                                setState(() {
-                                                  _obscureText = !_obscureText;
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
+                                const SizedBox(height: 30),
+                                delayedAnimation(
+                                  delay: 2000,
+                                  child: TextField(
+                                    controller: passwordController,
+                                    obscureText: _obscureText,
+                                    decoration: InputDecoration(
+                                      labelStyle: TextStyle(
+                                        color: Colors.grey[400],
+                                      ),
+                                      labelText: 'Mot de passe',
+                                      suffixIcon: IconButton(
+                                        icon: const Icon(
+                                          Icons.visibility,
+                                          color: Colors.black,
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            _obscureText = !_obscureText;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                // const SizedBox(height: 30),
+                                // delayedAnimation(
+                                //   delay: 2000,
+                                //   child: TextField(
+                                //     controller: passwordController,
+                                //     obscureText: _obscureText,
+                                //     decoration: InputDecoration(
+                                //       labelStyle: TextStyle(
+                                //         color: Colors.grey[400],
+                                //       ),
+                                //       labelText: 'Confirmez votre Mot de passe',
+                                //       suffixIcon: IconButton(
+                                //         icon: const Icon(
+                                //           Icons.visibility,
+                                //           color: Colors.black,
+                                //         ),
+                                //         onPressed: () {
+                                //           setState(() {
+                                //             _obscureText = !_obscureText;
+                                //           });
+                                //         },
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
+                              ],
+                            ),
+                          ),
                           const SizedBox(height: 100),
                           delayedAnimation(
                             delay: 3000,
@@ -231,7 +247,8 @@ class _connexionPageState extends State<connexionPage> {
                                           horizontal: 40, vertical: 14),
                                       child: Column(children: [
                                         ElevatedButton(
-                                            onPressed: signIn, //la fonction signIn
+                                            onPressed:
+                                                signUp, //la fonction signIn
                                             style: ElevatedButton.styleFrom(
                                               shape: const StadiumBorder(),
                                               primary: Colors.black,
@@ -247,8 +264,7 @@ class _connexionPageState extends State<connexionPage> {
                                                   style: GoogleFonts.poppins(
                                                     color: Colors.white,
                                                     fontSize: 16,
-                                                    fontWeight:
-                                                        FontWeight.w500,
+                                                    fontWeight: FontWeight.w500,
                                                   ),
                                                 )
                                               ],
@@ -256,7 +272,7 @@ class _connexionPageState extends State<connexionPage> {
                                       ]),
                                     ),
                                   ),
-                                    delayedAnimation(
+                                  delayedAnimation(
                                     delay: 3700,
                                     child: Container(
                                       margin: const EdgeInsets.symmetric(
@@ -264,14 +280,20 @@ class _connexionPageState extends State<connexionPage> {
                                       child: Column(
                                         children: [
                                           RichText(
-                                            text:  TextSpan(
+                                            text: TextSpan(
                                                 style: const TextStyle(
                                                     color: Colors.black),
                                                 text: "déjà inscrit ? ",
                                                 children: [
                                                   TextSpan(
-                                                    recognizer:  TapGestureRecognizer()..onTap = () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const loginaid())) ,
-                                                      
+                                                    recognizer: TapGestureRecognizer()
+                                                      ..onTap = () => Navigator
+                                                              .of(context)
+                                                          .pushReplacement(
+                                                              MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          const loginaid())),
                                                     text: "Connectez-vous",
                                                     style: const TextStyle(
                                                       decoration: TextDecoration
@@ -289,21 +311,14 @@ class _connexionPageState extends State<connexionPage> {
                               ),
                             ),
                           ),
-                          
                         ],
                       ),
                     ),
-                   
                   ],
                 ),
               ),
             ],
           ),
-          
         ));
-
-          
   }
 }
-
-

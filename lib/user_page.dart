@@ -11,12 +11,12 @@ class UserPage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-      final user = FirebaseAuth.instance.currentUser!;
+      
     return Scaffold(
   
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title:  Text( "Profil : " + user.email! , style:  GoogleFonts.poppins(fontSize: 17, color: Colors.white), textAlign: TextAlign.center,),
+        title:  Text( "Profil : " , style:  GoogleFonts.poppins(fontSize: 17, color: Colors.white), textAlign: TextAlign.center,),
         
       ),
       body:Container(
@@ -38,7 +38,7 @@ class UserPage extends StatelessWidget {
                 children: [
                   const Padding(padding: EdgeInsets.symmetric(horizontal: 10)),
                 Text(
-                "Adresse E-mail : " + user.email!,
+                "Adresse E-mail : ",
                 style:  GoogleFonts.poppins(fontSize: 17, color: Colors.black),
               ),
                   const SizedBox(
@@ -50,7 +50,7 @@ class UserPage extends StatelessWidget {
               ),
               
                ElevatedButton(
-                                    onPressed: (){}, //la fonction signIn
+                                    onPressed: () => FirebaseAuth.instance.signOut(), //la fonction signOut                              
                                               style: ElevatedButton.styleFrom(
                                                 shape: const StadiumBorder(),
                                                 primary: Colors.black,
@@ -72,6 +72,15 @@ class UserPage extends StatelessWidget {
                                                   )
                                                 ],
                                               )),
+                          // style: ElevatedButton.styleFrom(
+                          //   minimumSize: Size.fromHeight(50),
+                          // ),
+                          // icon: Icon(Icons.arrow_back,size: 32,),
+                          // label: Text('deconnexion' , style: TextStyle(fontSize: 24),
+                          // ),
+                          // onPressed: () => FirebaseAuth.instance.signOut(),
+                          // ),
+
               ],),
               
       ],)

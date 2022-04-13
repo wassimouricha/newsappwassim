@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print, camel_case_types
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:newsappwassim/model.dart';
@@ -9,6 +10,7 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/drawer.dart';
 import 'package:newsappwassim/delayed_animation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newsappwassim/signuppage.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -46,7 +48,6 @@ class _HomeScreenState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: getColors[1],
       appBar: AppBar(
@@ -90,17 +91,15 @@ class _connexionPageState extends State<connexionPage> {
 
   final passwordController = TextEditingController();
 
-    var _obscureText =
-      true; 
- //obscuretext est une propriété qui lorsque elle passe a true obscurcit le champ de texte
+  var _obscureText = true;
+  //obscuretext est une propriété qui lorsque elle passe a true obscurcit le champ de texte
 //la fonction future sign in ici indique que lorsque qu'on activeras la fonction
-   Future signIn() async {
-              await FirebaseAuth.instance.signInWithEmailAndPassword(
-                email: emailController.text.trim(),
-                password: passwordController.text.trim(),
-              );
-            }
-
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,52 +131,52 @@ class _connexionPageState extends State<connexionPage> {
                             ),
                           ),
                           const SizedBox(height: 35),
-                                                        Container(
-                                  margin: const EdgeInsets.symmetric(
-                                    horizontal: 30,
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      delayedAnimation(
-                                        delay: 1500,
-                                        child: TextField(
-                                          controller: emailController,
-                                          decoration: InputDecoration(
-                                            labelText: 'Votre mail',
-                                            labelStyle: TextStyle(
-                                              color: Colors.grey[400],
-                                            ),
-                                          ),
-                                        ),
+                          Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 30,
+                            ),
+                            child: Column(
+                              children: [
+                                delayedAnimation(
+                                  delay: 1500,
+                                  child: TextField(
+                                    controller: emailController,
+                                    decoration: InputDecoration(
+                                      labelText: 'Votre mail',
+                                      labelStyle: TextStyle(
+                                        color: Colors.grey[400],
                                       ),
-                                      const SizedBox(height: 30),
-                                      delayedAnimation(
-                                        delay: 2000,
-                                        child: TextField(
-                                          controller: passwordController,
-                                          obscureText: _obscureText,
-                                          decoration: InputDecoration(
-                                            labelStyle: TextStyle(
-                                              color: Colors.grey[400],
-                                            ),
-                                            labelText: 'Mot de passe',
-                                            suffixIcon: IconButton(
-                                              icon: const Icon(
-                                                Icons.visibility,
-                                                color: Colors.black,
-                                              ),
-                                              onPressed: () {
-                                                setState(() {
-                                                  _obscureText = !_obscureText;
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
+                                const SizedBox(height: 30),
+                                delayedAnimation(
+                                  delay: 2000,
+                                  child: TextField(
+                                    controller: passwordController,
+                                    obscureText: _obscureText,
+                                    decoration: InputDecoration(
+                                      labelStyle: TextStyle(
+                                        color: Colors.grey[400],
+                                      ),
+                                      labelText: 'Mot de passe',
+                                      suffixIcon: IconButton(
+                                        icon: const Icon(
+                                          Icons.visibility,
+                                          color: Colors.black,
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            _obscureText = !_obscureText;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           const SizedBox(height: 125),
                           delayedAnimation(
                             delay: 3000,
@@ -204,7 +203,8 @@ class _connexionPageState extends State<connexionPage> {
                                           horizontal: 40, vertical: 14),
                                       child: Column(children: [
                                         ElevatedButton(
-                                            onPressed: signIn, //la fonction signIn
+                                            onPressed:
+                                                signIn, //la fonction signIn
                                             style: ElevatedButton.styleFrom(
                                               shape: const StadiumBorder(),
                                               primary: Colors.black,
@@ -220,13 +220,42 @@ class _connexionPageState extends State<connexionPage> {
                                                   style: GoogleFonts.poppins(
                                                     color: Colors.white,
                                                     fontSize: 16,
-                                                    fontWeight:
-                                                        FontWeight.w500,
+                                                    fontWeight: FontWeight.w500,
                                                   ),
                                                 )
                                               ],
                                             )),
                                       ]),
+                                    ),
+                                  ),
+                                
+                                  delayedAnimation(
+                                    delay: 3700,
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 40, vertical: 2),
+                                      child: Column(
+                                        children: [
+                                          RichText(
+                                            text:  TextSpan(
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                                text: "Pas de compte ? ",
+                                                children: [
+                                                  TextSpan(
+                                                    recognizer:  TapGestureRecognizer()..onTap = () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const Signup())) ,
+                                                      
+                                                    text: "Inscrivez-vous",
+                                                    style: const TextStyle(
+                                                      decoration: TextDecoration
+                                                          .underline,
+                                                      color: Colors.red,
+                                                    ),
+                                                  ),
+                                                ]),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -241,11 +270,6 @@ class _connexionPageState extends State<connexionPage> {
               ),
             ],
           ),
-          
         ));
-
-          
   }
 }
-
-

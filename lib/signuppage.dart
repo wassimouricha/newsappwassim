@@ -9,6 +9,8 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/drawer.dart';
 import 'package:newsappwassim/delayed_animation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newsappwassim/login.dart';
+import 'package:flutter/gestures.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -203,7 +205,7 @@ class _connexionPageState extends State<connexionPage> {
                                     ],
                                   ),
                                 ),
-                          const SizedBox(height: 115),
+                          const SizedBox(height: 100),
                           delayedAnimation(
                             delay: 3000,
                             child: Container(
@@ -254,13 +256,44 @@ class _connexionPageState extends State<connexionPage> {
                                       ]),
                                     ),
                                   ),
+                                    delayedAnimation(
+                                    delay: 3700,
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 40, vertical: 2),
+                                      child: Column(
+                                        children: [
+                                          RichText(
+                                            text:  TextSpan(
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                                text: "déjà inscrit ? ",
+                                                children: [
+                                                  TextSpan(
+                                                    recognizer:  TapGestureRecognizer()..onTap = () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const loginaid())) ,
+                                                      
+                                                    text: "Connectez-vous",
+                                                    style: const TextStyle(
+                                                      decoration: TextDecoration
+                                                          .underline,
+                                                      color: Colors.red,
+                                                    ),
+                                                  ),
+                                                ]),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
                           ),
+                          
                         ],
                       ),
                     ),
+                   
                   ],
                 ),
               ),

@@ -27,8 +27,10 @@ class NavigationDraweer extends StatelessWidget {
 }
 
 //le widget du header du drawer/sidebar
+
 Widget buildHeader(BuildContext context) {
-      // final user = FirebaseAuth.instance.currentUser!;
+    
+    
   return Material(
 
       color: Colors.black,

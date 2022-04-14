@@ -9,7 +9,7 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/drawer.dart';
 import 'package:newsappwassim/delayed_animation.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:email_validator/email_validator.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key? key}) : super(key: key);
@@ -90,11 +90,44 @@ class _connexionPageState extends State<connexionPage> {
 
   final passwordController = TextEditingController();
 
-  Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailController.text.trim(),
-      password: passwordController.text.trim(),
-    );
+  Future resetPassword() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Scaffold(
+                body: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(children: [
+                Text(
+                  "l'email à été envoyé",
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+              ]),
+            )));
+        
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(
+        email: emailController.text.trim(),
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e);
+
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => Scaffold(
+                  body: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(children: [
+                  Text(
+                    "une erreur est survenue",
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                ]),
+              )));
+
+    
+    }
   }
 
   @override
@@ -136,7 +169,7 @@ class _connexionPageState extends State<connexionPage> {
                               children: [
                                 delayedAnimation(
                                   delay: 1500,
-                                  child: TextField(
+                                  child: TextFormField(
                                     controller: emailController,
                                     decoration: InputDecoration(
                                       labelText: 'Votre mail',
@@ -144,10 +177,14 @@ class _connexionPageState extends State<connexionPage> {
                                         color: Colors.grey[400],
                                       ),
                                     ),
+                                    autovalidateMode: AutovalidateMode
+                                        .onUserInteraction, //fonction permettant de montrer le texte
+                                    validator: (email) => email != null &&
+                                            !EmailValidator.validate(email)
+                                        ? "entrer une adresse mail valide"
+                                        : null, //on ajoute le package email validator afin de confirmer les informations et donc ici si l'email n'est pas valide alors le message  s'afficheras ou le mail est valide
                                   ),
                                 ),
-                             
-                              
                               ],
                             ),
                           ),
@@ -160,7 +197,6 @@ class _connexionPageState extends State<connexionPage> {
                               height: 200,
                               child: Column(
                                 children: [
-                            
                                   const SizedBox(height: 35),
                                   delayedAnimation(
                                     delay: 2500,
@@ -170,7 +206,7 @@ class _connexionPageState extends State<connexionPage> {
                                       child: Column(children: [
                                         ElevatedButton(
                                             onPressed:
-                                                signIn, //la fonction signIn
+                                                resetPassword, //la fonction resetPassword
                                             style: ElevatedButton.styleFrom(
                                               shape: const StadiumBorder(),
                                               primary: Colors.black,
@@ -182,7 +218,7 @@ class _connexionPageState extends State<connexionPage> {
                                               children: [
                                                 const SizedBox(width: 10),
                                                 Text(
-                                                  "Confirmer",
+                                                  "Changer de mot de passe",
                                                   style: GoogleFonts.poppins(
                                                     color: Colors.white,
                                                     fontSize: 16,
@@ -194,8 +230,6 @@ class _connexionPageState extends State<connexionPage> {
                                       ]),
                                     ),
                                   ),
-                                 
-                                
                                 ],
                               ),
                             ),

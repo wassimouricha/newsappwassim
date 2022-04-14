@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:newsappwassim/model.dart';
 import 'package:newsappwassim/news_api.dart';
@@ -226,6 +227,7 @@ class _connexionPageState extends State<connexionPage> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 const SizedBox(width: 10),
+                                           
                                                 Text(
                                                   "Confirmer",
                                                   style: GoogleFonts.poppins(
@@ -233,22 +235,22 @@ class _connexionPageState extends State<connexionPage> {
                                                     fontSize: 16,
                                                     fontWeight: FontWeight.w500,
                                                   ),
-                                                )
+                                                ),
+                                                
                                               ],
                                             )),
                                       ]),
                                     ),
                                   ),
-                                 
-                           delayedAnimation(
-                                    delay: 3600,
+                                 delayedAnimation(
+                                    delay: 3500,
                                     child: Container(
                                       margin: const EdgeInsets.symmetric(
-                                          horizontal: 40, vertical: 15),
+                                          horizontal: 40, vertical: 14),
                                       child: Column(children: [
                                         ElevatedButton(
                                             onPressed:
-                                             (){}, //la fonction signIn
+                                                (){}, 
                                             style: ElevatedButton.styleFrom(
                                               shape: const StadiumBorder(),
                                               primary: Colors.black,
@@ -259,6 +261,11 @@ class _connexionPageState extends State<connexionPage> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 const SizedBox(width: 10),
+                                                const Icon(
+                                          FontAwesomeIcons.google,
+                                          color: Colors.red,
+                                        ),
+                                        const SizedBox(width: 10),
                                                 Text(
                                                   "Connectez vous avec Google",
                                                   style: GoogleFonts.poppins(
@@ -266,32 +273,44 @@ class _connexionPageState extends State<connexionPage> {
                                                     fontSize: 16,
                                                     fontWeight: FontWeight.w500,
                                                   ),
-                                                )
+                                                ),
+                                                
                                               ],
                                             )),
                                       ]),
                                     ),
                                   ),
-                                    delayedAnimation(
+                        
+                                  
+                                 delayedAnimation(
                                     delay: 3500,
                                     child: Container(
                                       margin: const EdgeInsets.symmetric(
-                                          horizontal: 40, vertical: 2 ),
-                                      child: Column(children: [
-                                        GestureDetector(
-                                          child: const Text("Vous avez oublié votre mot de passe ?", 
-                                          style: TextStyle(
-                                            decoration: TextDecoration.underline,
-                                            color: Colors.red,
-
-                                          ),
-                                          ),
-                                          onTap: () =>Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const ForgotPassword())) ,
-                                         ),
-                                      ]),
+                                          horizontal: 40, vertical: 2),
+                                      child: Column(
+                                        children: [
+                                          RichText(
+                                            text:  TextSpan(
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                                text: "Vous avez oublié votre ",
+                                                children: [
+                                                  TextSpan(
+                                                    recognizer:  TapGestureRecognizer()..onTap = () =>Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const ForgotPassword())) ,
+                                                      
+                                                    text: "mot de passe ?",
+                                                    style: const TextStyle(
+                                                      decoration: TextDecoration
+                                                          .underline,
+                                                      color: Colors.red,
+                                                    ),
+                                                  ),
+                                                ]),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                
                                   delayedAnimation(
                                     delay: 3700,
                                     child: Container(

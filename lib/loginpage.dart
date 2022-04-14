@@ -139,7 +139,7 @@ class _connexionPageState extends State<connexionPage> {
                               children: [
                                 delayedAnimation(
                                   delay: 1500,
-                                  child: TextField(
+                                  child: TextFormField(
                                     controller: emailController,
                                     decoration: InputDecoration(
                                       labelText: 'Votre mail',

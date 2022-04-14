@@ -12,6 +12,7 @@ import 'package:newsappwassim/delayed_animation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsappwassim/login.dart';
 import 'package:flutter/gestures.dart';
+import 'package:email_validator/email_validator.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -88,23 +89,31 @@ class connexionPage extends StatefulWidget {
 }
 
 class _connexionPageState extends State<connexionPage> {
+  final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
 
   var _obscureText = true;
   //obscuretext est une propriété qui lorsque elle passe a true obscurcit le champ de texte
 //la fonction future sign up ici indique que lorsque qu'on activeras la fonction
   Future signUp() async {
+    final isValid = formKey.currentState!.validate();
+    if (!isValid) return; //si les champs de texte sont valide alors la fonction se lance sinon la demande recommence
+
     showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (context) =>  Scaffold(
-          body: Padding(padding: const EdgeInsets.all(20.0), child: Column(children: [   Text(
-              'inscription en cours',
-              style: Theme.of(context).textTheme.headline6,
-            ),const CircularProgressIndicator( semanticsLabel:" inscription")]),) 
-            ));
+        builder: (context) => Scaffold(
+                body: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(children: [
+                Text(
+                  'inscription en cours',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                const CircularProgressIndicator(semanticsLabel: " inscription")
+              ]),
+            )));
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
@@ -114,10 +123,9 @@ class _connexionPageState extends State<connexionPage> {
       //si il y a une erreur alors on va imprimer dans le terminal l'erreur
       print(e);
     }
-      //navigator.of(context) ne fonctionne pas !
-        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const HomeScreen()));
-  
+    //navigator.of(context) ne fonctionne pas !
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const HomeScreen()));
   }
 
   @override
@@ -137,7 +145,9 @@ class _connexionPageState extends State<connexionPage> {
                   children: [
                     delayedAnimation(
                       delay: 1000,
-                      child: Column(
+                      child: Form (
+                         key: formKey,
+                        child:Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
@@ -158,7 +168,7 @@ class _connexionPageState extends State<connexionPage> {
                               children: [
                                 delayedAnimation(
                                   delay: 1500,
-                                  child: TextField(
+                                  child: TextFormField(
                                     controller: emailController,
                                     decoration: InputDecoration(
                                       labelText: 'Votre mail',
@@ -166,12 +176,18 @@ class _connexionPageState extends State<connexionPage> {
                                         color: Colors.grey[400],
                                       ),
                                     ),
+                                     autovalidateMode: AutovalidateMode
+                                          .onUserInteraction, //fonction permettant de montrer le texte
+                                      validator: (email) => email != null &&
+                                              !EmailValidator.validate(email)
+                                          ? "entrer une adresse mail valide"
+                                          : null, //on ajoute le package email validator afin de confirmer les informations et donc ici si l'email n'est pas valide alors le message  s'afficheras ou le mail est valide
                                   ),
                                 ),
                                 const SizedBox(height: 30),
                                 delayedAnimation(
                                   delay: 2000,
-                                  child: TextField(
+                                  child: TextFormField(
                                     controller: passwordController,
                                     obscureText: _obscureText,
                                     decoration: InputDecoration(
@@ -191,6 +207,12 @@ class _connexionPageState extends State<connexionPage> {
                                         },
                                       ),
                                     ),
+                                        autovalidateMode: AutovalidateMode
+                                          .onUserInteraction, //fonction permettant de montrer le text
+                                      validator: (value) => value != null &&
+                                              value.length < 6
+                                          ? "entrez minimum 6 caractères"
+                                          : null, // ici si la taille du mot de passe n'est pas supérieur ou égal a 6  alors le message  s'afficheras ou alors le mdp est valide
                                   ),
                                 ),
                                 // const SizedBox(height: 30),
@@ -314,7 +336,7 @@ class _connexionPageState extends State<connexionPage> {
                         ],
                       ),
                     ),
-                  ],
+                    ),],
                 ),
               ),
             ],

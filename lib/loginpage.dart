@@ -111,8 +111,8 @@ class _connexionPageState extends State<connexionPage> {
             children: [
               Container(
                 margin: const EdgeInsets.symmetric(
-                  vertical: 40,
-                  horizontal: 30,
+                  vertical: 20,
+                  horizontal: 20,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -184,13 +184,13 @@ class _connexionPageState extends State<connexionPage> {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 125),
+                          const SizedBox(height: 25),
                           delayedAnimation(
                             delay: 3000,
                             child: Container(
                               margin: const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 10),
-                              height: 200,
+                              height: 100,
                               child: Column(
                                 children: [
                                   Text(
@@ -202,8 +202,12 @@ class _connexionPageState extends State<connexionPage> {
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
-                                  const SizedBox(height: 30),
-                                  delayedAnimation(
+                                
+                                ],
+                              ),
+                            ),
+                          ),
+                             delayedAnimation(
                                     delay: 3500,
                                     child: Container(
                                       margin: const EdgeInsets.symmetric(
@@ -235,11 +239,44 @@ class _connexionPageState extends State<connexionPage> {
                                       ]),
                                     ),
                                   ),
-                                  delayedAnimation(
+                                 
+                           delayedAnimation(
+                                    delay: 3600,
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 40, vertical: 15),
+                                      child: Column(children: [
+                                        ElevatedButton(
+                                            onPressed:
+                                             (){}, //la fonction signIn
+                                            style: ElevatedButton.styleFrom(
+                                              shape: const StadiumBorder(),
+                                              primary: Colors.black,
+                                              padding: const EdgeInsets.all(14),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const SizedBox(width: 10),
+                                                Text(
+                                                  "Connectez vous avec Google",
+                                                  style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                )
+                                              ],
+                                            )),
+                                      ]),
+                                    ),
+                                  ),
+                                    delayedAnimation(
                                     delay: 3500,
                                     child: Container(
                                       margin: const EdgeInsets.symmetric(
-                                          horizontal: 40, ),
+                                          horizontal: 40, vertical: 2 ),
                                       child: Column(children: [
                                         GestureDetector(
                                           child: const Text("Vous avez oublié votre mot de passe ?", 
@@ -284,10 +321,6 @@ class _connexionPageState extends State<connexionPage> {
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ),

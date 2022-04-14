@@ -122,6 +122,7 @@ class _connexionPageState extends State<connexionPage> {
     } on FirebaseAuthException catch (e) {
       //si il y a une erreur alors on va imprimer dans le terminal l'erreur
       print(e);
+      
     }
     //navigator.of(context) ne fonctionne pas !
     Navigator.of(context)

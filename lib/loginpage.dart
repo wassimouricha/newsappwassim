@@ -139,7 +139,7 @@ class _connexionPageState extends State<connexionPage> {
                               children: [
                                 delayedAnimation(
                                   delay: 1500,
-                                  child: TextFormField(
+                                  child: TextField(
                                     controller: emailController,
                                     decoration: InputDecoration(
                                       labelText: 'Votre mail',
@@ -152,7 +152,7 @@ class _connexionPageState extends State<connexionPage> {
                                 const SizedBox(height: 30),
                                 delayedAnimation(
                                   delay: 2000,
-                                  child: TextField(
+                                  child: TextFormField(
                                     controller: passwordController,
                                     obscureText: _obscureText,
                                     decoration: InputDecoration(
@@ -172,6 +172,12 @@ class _connexionPageState extends State<connexionPage> {
                                         },
                                       ),
                                     ),
+                                      autovalidateMode: AutovalidateMode
+                                          .onUserInteraction, //fonction permettant de montrer le text
+                                      validator: (value) => value != null &&
+                                              value.isEmpty
+                                          ? "Entrer votre mot de passe est obligatoire. "
+                                          : null, // ici si la taille du mot de passe n'est pas supérieur ou égal a 6  alors le message  s'afficheras ou alors le mdp est valide
                                   ),
                                 ),
                               ],

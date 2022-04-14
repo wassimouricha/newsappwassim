@@ -6,7 +6,7 @@ import 'package:newsappwassim/user_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsappwassim/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:newsappwassim/signuppage.dart';
+import 'package:newsappwassim/signup.dart';
 
 //mon drawer = ma sidebar
 
@@ -164,7 +164,7 @@ Widget buildMenuItems(BuildContext context) => Wrap(
             style: GoogleFonts.poppins(fontSize: 15, color: Colors.black),
           ),
           onTap: () =>  Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const Signup())),
+              MaterialPageRoute(builder: (context) => const Signuped())),
         ),
         ListTile(
           leading: const Icon(Icons.login),

@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newsappwassim/const.dart';
+import 'package:newsappwassim/home_screen.dart';
 import 'package:newsappwassim/model.dart';
 import 'package:newsappwassim/news_api.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
@@ -13,7 +15,6 @@ import 'package:newsappwassim/delayed_animation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsappwassim/signuppage.dart';
 import 'package:newsappwassim/password.dart';
-
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -91,7 +92,7 @@ class connexionPage extends StatefulWidget {
 
 class _connexionPageState extends State<connexionPage> {
   final emailController = TextEditingController();
-
+  late GoogleSignInAccount userObj;
   final passwordController = TextEditingController();
 
   var _obscureText = true;
@@ -175,12 +176,12 @@ class _connexionPageState extends State<connexionPage> {
                                         },
                                       ),
                                     ),
-                                      autovalidateMode: AutovalidateMode
-                                          .onUserInteraction, //fonction permettant de montrer le text
-                                      validator: (value) => value != null &&
-                                              value.isEmpty
-                                          ? "Entrer votre mot de passe est obligatoire. "
-                                          : null, // ici si la taille du mot de passe n'est pas supérieur ou égal a 6  alors le message  s'afficheras ou alors le mdp est valide
+                                    autovalidateMode: AutovalidateMode
+                                        .onUserInteraction, //fonction permettant de montrer le text
+                                    validator: (value) => value != null &&
+                                            value.isEmpty
+                                        ? "Entrer votre mot de passe est obligatoire. "
+                                        : null, // ici si la taille du mot de passe n'est pas supérieur ou égal a 6  alors le message  s'afficheras ou alors le mdp est valide
                                   ),
                                 ),
                               ],
@@ -204,143 +205,159 @@ class _connexionPageState extends State<connexionPage> {
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
-                                
                                 ],
                               ),
                             ),
                           ),
-                             delayedAnimation(
-                                    delay: 3500,
-                                    child: Container(
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 40, vertical: 14),
-                                      child: Column(children: [
-                                        ElevatedButton(
-                                            onPressed:
-                                                signIn, //la fonction signIn
-                                            style: ElevatedButton.styleFrom(
-                                              shape: const StadiumBorder(),
-                                              primary: Colors.black,
-                                              padding: const EdgeInsets.all(14),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                const SizedBox(width: 10),
-                                           
-                                                Text(
-                                                  "Confirmer",
-                                                  style: GoogleFonts.poppins(
-                                                    color: Colors.white,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                                
-                                              ],
-                                            )),
-                                      ]),
+                          delayedAnimation(
+                            delay: 3500,
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 40, vertical: 14),
+                              child: Column(children: [
+                                ElevatedButton(
+                                    onPressed: signIn, //la fonction signIn
+                                    style: ElevatedButton.styleFrom(
+                                      shape: const StadiumBorder(),
+                                      primary: Colors.black,
+                                      padding: const EdgeInsets.all(14),
                                     ),
-                                  ),
-                                 delayedAnimation(
-                                    delay: 3500,
-                                    child: Container(
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 40, vertical: 14),
-                                      child: Column(children: [
-                                        ElevatedButton(
-                                            onPressed:
-                                                (){}, 
-                                            style: ElevatedButton.styleFrom(
-                                              shape: const StadiumBorder(),
-                                              primary: Colors.black,
-                                              padding: const EdgeInsets.all(14),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                const SizedBox(width: 10),
-                                                const Icon(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const SizedBox(width: 10),
+                                        Text(
+                                          "Confirmer",
+                                          style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
+                                    )),
+                              ]),
+                            ),
+                          ),
+                          delayedAnimation(
+                            delay: 3500,
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 40, vertical: 14),
+                              child: Column(children: [
+                                ElevatedButton(
+                                    onPressed: () async {
+                                      await GoogleSignIn()
+                                          .signIn()
+                                          .then((value) {
+                                        setState(() {
+                                          userObj = value!;
+                                        });
+                                      });
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const HomeScreen()));
+                                    
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      shape: const StadiumBorder(),
+                                      primary: Colors.black,
+                                      padding: const EdgeInsets.all(14),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const SizedBox(width: 10),
+                                        const Icon(
                                           FontAwesomeIcons.google,
                                           color: Colors.red,
                                         ),
                                         const SizedBox(width: 10),
-                                                Text(
-                                                  "Connectez vous avec Google",
-                                                  style: GoogleFonts.poppins(
-                                                    color: Colors.white,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                                
-                                              ],
-                                            )),
-                                      ]),
-                                    ),
-                                  ),
-                        
-                                  
-                                 delayedAnimation(
-                                    delay: 3500,
-                                    child: Container(
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 40, vertical: 2),
-                                      child: Column(
+                                        Text(
+                                          "Connectez vous avec Google",
+                                          style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
+                                    )),
+                              ]),
+                            ),
+                          ),
+                          delayedAnimation(
+                            delay: 3500,
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 40, vertical: 2),
+                              child: Column(
+                                children: [
+                                  RichText(
+                                    text: TextSpan(
+                                        style: const TextStyle(
+                                            color: Colors.black),
+                                        text: "Vous avez oublié votre ",
                                         children: [
-                                          RichText(
-                                            text:  TextSpan(
-                                                style: const TextStyle(
-                                                    color: Colors.black),
-                                                text: "Vous avez oublié votre ",
-                                                children: [
-                                                  TextSpan(
-                                                    recognizer:  TapGestureRecognizer()..onTap = () =>Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const ForgotPassword())) ,
-                                                      
-                                                    text: "mot de passe ?",
-                                                    style: const TextStyle(
-                                                      decoration: TextDecoration
-                                                          .underline,
-                                                      color: Colors.red,
-                                                    ),
-                                                  ),
-                                                ]),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  delayedAnimation(
-                                    delay: 3700,
-                                    child: Container(
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 40, vertical: 2),
-                                      child: Column(
+                                          TextSpan(
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () => Navigator.of(
+                                                      context)
+                                                  .pushReplacement(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const ForgotPassword())),
+                                            text: "mot de passe ?",
+                                            style: const TextStyle(
+                                              decoration:
+                                                  TextDecoration.underline,
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                        ]),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          delayedAnimation(
+                            delay: 3700,
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 40, vertical: 2),
+                              child: Column(
+                                children: [
+                                  RichText(
+                                    text: TextSpan(
+                                        style: const TextStyle(
+                                            color: Colors.black),
+                                        text: "Pas de compte ? ",
                                         children: [
-                                          RichText(
-                                            text:  TextSpan(
-                                                style: const TextStyle(
-                                                    color: Colors.black),
-                                                text: "Pas de compte ? ",
-                                                children: [
-                                                  TextSpan(
-                                                    recognizer:  TapGestureRecognizer()..onTap = () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const Signup())) ,
-                                                      
-                                                    text: "Inscrivez-vous",
-                                                    style: const TextStyle(
-                                                      decoration: TextDecoration
-                                                          .underline,
-                                                      color: Colors.red,
-                                                    ),
-                                                  ),
-                                                ]),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
+                                          TextSpan(
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () => Navigator.of(
+                                                      context)
+                                                  .pushReplacement(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const Signup())),
+                                            text: "Inscrivez-vous",
+                                            style: const TextStyle(
+                                              decoration:
+                                                  TextDecoration.underline,
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                        ]),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),

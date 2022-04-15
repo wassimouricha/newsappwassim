@@ -13,8 +13,10 @@ Future main() async {
     options: const FirebaseOptions(
       apiKey: "AIzaSyCOMPb2RbsTegqR4zKfSfgGB28iYv_0dRo", // Your apiKey
       appId: "1:517870258699:android:6ba0fbddbc4b8497e8950e", // Your appId
-      messagingSenderId: "XXX", // Your messagingSenderId
-      projectId: "newsappwassim-d200c",) // Your projectId
+      messagingSenderId: "517870258699", // Your messagingSenderId
+      projectId: "newsappwassim-d200c", // Your projectId
+       ) 
+     
   );
  
   runApp(const MyApp());

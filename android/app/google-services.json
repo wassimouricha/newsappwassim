@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "517870258699-oo1i546kam2fb7nga7isaf9hv251sri8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.newsappwassim",
+            "certificate_hash": "7082832ac1585f7f1b532096388ee85755ff0db0"
+          }
+        },
+        {
           "client_id": "517870258699-0aoh3ans0ln1d9caaeh0u454mpb9vuac.apps.googleusercontent.com",
           "client_type": 3
         }

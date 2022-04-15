@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newsappwassim/const.dart';
-import 'package:newsappwassim/home_screen.dart';
 import 'package:newsappwassim/model.dart';
 import 'package:newsappwassim/news_api.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
@@ -15,6 +14,7 @@ import 'package:newsappwassim/delayed_animation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsappwassim/signuppage.dart';
 import 'package:newsappwassim/password.dart';
+import 'package:newsappwassim/user_page.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -251,16 +251,17 @@ class _connexionPageState extends State<connexionPage> {
                                       await GoogleSignIn()
                                           .signIn()
                                           .then((value) {
+                                        print(value);
+                                        print(FirebaseAuth.instance.currentUser);
                                         setState(() {
                                           userObj = value!;
                                         });
                                       });
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const HomeScreen()));
-                                    
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const UserPage()));
                                     },
                                     style: ElevatedButton.styleFrom(
                                       shape: const StadiumBorder(),

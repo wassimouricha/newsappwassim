@@ -6,6 +6,7 @@ import 'package:newsappwassim/login.dart';
 class UserPage extends StatelessWidget {
   const UserPage({Key? key}) : super(key: key);
   get user => FirebaseAuth.instance.currentUser;
+  
 
   @override
   Widget build(BuildContext context)=> Scaffold(
@@ -37,7 +38,7 @@ class UserPage extends StatelessWidget {
                   const CircleAvatar(
                     radius: 142,
                     backgroundImage: NetworkImage(
-                        'https://media-exp1.licdn.com/dms/image/D4E03AQHKyal9OiD12g/profile-displayphoto-shrink_800_800/0/1648624925960?e=2147483647&v=beta&t=NimRdFpaBcn7mrK3Abem2USfCRhEsZ8K7-h8NAQ9xYY'),
+                       "user!.photoURL!"),
                   ),
                   const SizedBox(
                     height: 12,
@@ -113,7 +114,7 @@ class UserPage extends StatelessWidget {
                   const CircleAvatar(
                     radius: 142,
                     backgroundImage: NetworkImage(
-                        'https://media-exp1.licdn.com/dms/image/D4E03AQHKyal9OiD12g/profile-displayphoto-shrink_800_800/0/1648624925960?e=2147483647&v=beta&t=NimRdFpaBcn7mrK3Abem2USfCRhEsZ8K7-h8NAQ9xYY'),
+                        ''),
                   ),
                   const SizedBox(
                     height: 12,

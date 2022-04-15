@@ -216,31 +216,7 @@ class _connexionPageState extends State<connexionPage> {
                                           : null, // ici si la taille du mot de passe n'est pas supérieur ou égal a 6  alors le message  s'afficheras ou alors le mdp est valide
                                   ),
                                 ),
-                                // const SizedBox(height: 30),
-                                // delayedAnimation(
-                                //   delay: 2000,
-                                //   child: TextField(
-                                //     controller: passwordController,
-                                //     obscureText: _obscureText,
-                                //     decoration: InputDecoration(
-                                //       labelStyle: TextStyle(
-                                //         color: Colors.grey[400],
-                                //       ),
-                                //       labelText: 'Confirmez votre Mot de passe',
-                                //       suffixIcon: IconButton(
-                                //         icon: const Icon(
-                                //           Icons.visibility,
-                                //           color: Colors.black,
-                                //         ),
-                                //         onPressed: () {
-                                //           setState(() {
-                                //             _obscureText = !_obscureText;
-                                //           });
-                                //         },
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
+                             
                               ],
                             ),
                           ),

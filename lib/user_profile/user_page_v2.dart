@@ -86,8 +86,18 @@ class _UserPageV2State extends State<UserPageV2> {
                                     fontWeight: FontWeight.w500,
                                   ),
                                 )
+                                
                               ],
+                              
                             )),
+                              const SizedBox(
+                          height: 24,
+                        ),
+                        const NumbersWidget(),
+                        const SizedBox(
+                          height: 48,
+                        ),
+                        buildAbout(),
                       ],
                     ),
                   ),
@@ -175,6 +185,10 @@ class _UserPageV2State extends State<UserPageV2> {
           children: const [
             Text("A propos",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ), 
+            SizedBox(height: 2,)
+            ,Text("Changez de description lorsque vous vous connecter a votre profil !",
+            style: TextStyle(fontSize: 10,color: Colors.grey),
             ),
             SizedBox(height: 16,),
             Text("Lorem ipsum ititit is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout The point of using Lorem Ipsum  that it has a moreorless normal distribution of letters  opposed to using Content here ",

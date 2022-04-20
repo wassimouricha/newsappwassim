@@ -57,11 +57,11 @@ class NavigationDraweer extends StatelessWidget {
                               const SizedBox(
                                 height: 12,
                               ),
-                              Text(
-                                "Nom de l'utilisateur",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 20, color: Colors.white),
-                              ),
+                              // Text(
+                              //   "Nom de l'utilisateur",
+                              //   style: GoogleFonts.poppins(
+                              //       fontSize: 20, color: Colors.white),
+                              // ), mettre le display name
                               const SizedBox(
                                 height: 12,
                               ),
@@ -114,11 +114,11 @@ class NavigationDraweer extends StatelessWidget {
                               const SizedBox(
                                 height: 12,
                               ),
-                              Text(
-                                "Nom de l'utilisateur",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 20, color: Colors.white),
-                              ),
+                              // Text(
+                              //   "Nom de l'utilisateur",
+                              //   style: GoogleFonts.poppins(
+                              //       fontSize: 20, color: Colors.white),
+                              // ), mettre le display name
                               const SizedBox(
                                 height: 12,
                               ),

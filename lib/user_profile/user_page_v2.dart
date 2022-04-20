@@ -56,12 +56,12 @@ class _UserPageV2State extends State<UserPageV2> {
                           const SizedBox(
                             height: 4,
                           ),
-                          Text(
-                            user.email, //mettre le nom plus tard
-                            style: GoogleFonts.poppins(
-                              color: Colors.grey,
-                            ),
-                          ),
+                          // Text(
+                          //   user.email, //mettre le nom plus tard
+                          //   style: GoogleFonts.poppins(
+                          //     color: Colors.grey,
+                          //   ),
+                          // ), mettre le display name plus tard 
                         ]),
                         const SizedBox(
                           height: 24,
@@ -129,12 +129,12 @@ class _UserPageV2State extends State<UserPageV2> {
                           const SizedBox(
                             height: 4,
                           ),
-                          Text(
-                            "non connecté",
-                            style: GoogleFonts.poppins(
-                              color: Colors.grey,
-                            ),
-                          ),
+                          // Text(
+                          //   "non connecté",
+                          //   style: GoogleFonts.poppins(
+                          //     color: Colors.grey,
+                          //   ),
+                          // ), mettre le display.name 
                         ]),
                         const SizedBox(
                           height: 24,

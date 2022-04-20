@@ -7,7 +7,7 @@ import 'package:newsappwassim/model.dart';
 import 'package:newsappwassim/news_api.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/drawer.dart';
-import 'package:newsappwassim/delayed_animation.dart';
+import 'package:newsappwassim/Animations/delayed_animation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 

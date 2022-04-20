@@ -8,7 +8,7 @@ import 'package:newsappwassim/model.dart';
 import 'package:newsappwassim/news_api.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:newsappwassim/drawer.dart';
-import 'package:newsappwassim/delayed_animation.dart';
+import 'package:newsappwassim/Animations/delayed_animation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsappwassim/login.dart';
 import 'package:flutter/gestures.dart';
@@ -117,7 +117,7 @@ class _connexionPageState extends State<connexionPage> {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
-        password: passwordController.text.trim(),
+        password: passwordController.text.trim(), //ajouter displayname plus tard
       );
     } on FirebaseAuthException catch (e) {
       //si il y a une erreur alors on va imprimer dans le terminal l'erreur

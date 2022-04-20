@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:newsappwassim/home_screen.dart';
-import 'package:newsappwassim/user_page.dart';
+import 'package:newsappwassim/user_profile/user_page_v2.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsappwassim/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -39,7 +39,7 @@ class NavigationDraweer extends StatelessWidget {
                           Navigator.pop(context);
                           //pour rediriger vers la page
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const UserPage(),
+                            builder: (context) =>  const UserPageV2(),
                           ));
                         },
                         child: Container(
@@ -96,7 +96,7 @@ class NavigationDraweer extends StatelessWidget {
                           Navigator.pop(context);
                           //pour rediriger vers la page
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const UserPage(),
+                            builder: (context) => const UserPageV2(),
                           ));
                         },
                         child: Container(

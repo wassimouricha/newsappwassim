@@ -41,6 +41,7 @@ class _MyAppState extends State<MyApp> {
         
 
         primarySwatch: Colors.blue,
+        dividerColor: Colors.black,
       ),
       home: const HomeScreen(),
     );

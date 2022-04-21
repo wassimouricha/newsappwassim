@@ -28,7 +28,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           ProfileWidget(
             imagePath: user.imagePath,
             isEdit : true,
-           onClicked: () async {},
+          
           
           ),
 
@@ -36,6 +36,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           TextFieldWidget(
             label:"à propos",
             text: user.about,
+            maxLines: 5,
             onChanged: (about){},
           ),
 

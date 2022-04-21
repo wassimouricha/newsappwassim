@@ -7,6 +7,7 @@ import 'package:newsappwassim/user_profile/user_pref.dart';
 import 'profile_widget.dart';
 import 'numbers_widget.dart';
 
+
 class UserPageV2 extends StatefulWidget {
   const UserPageV2({Key? key}) : super(key: key);
 
@@ -40,7 +41,7 @@ class _UserPageV2State extends State<UserPageV2> {
                       children: [
                         ProfileWidget(
                           imagePath: usered.imagePath,
-                          onClicked: () async {},
+                      
                         ),
                         const SizedBox(
                           height: 24,
@@ -61,7 +62,7 @@ class _UserPageV2State extends State<UserPageV2> {
                           //   style: GoogleFonts.poppins(
                           //     color: Colors.grey,
                           //   ),
-                          // ), mettre le display name plus tard 
+                          // ), mettre le display name plus tard
                         ]),
                         const SizedBox(
                           height: 24,
@@ -86,11 +87,9 @@ class _UserPageV2State extends State<UserPageV2> {
                                     fontWeight: FontWeight.w500,
                                   ),
                                 )
-                                
                               ],
-                              
                             )),
-                              const SizedBox(
+                        const SizedBox(
                           height: 24,
                         ),
                         const NumbersWidget(),
@@ -113,7 +112,7 @@ class _UserPageV2State extends State<UserPageV2> {
                       children: [
                         ProfileWidget(
                           imagePath: usered.imagePath,
-                          onClicked: () async {},
+                       
                         ),
                         const SizedBox(
                           height: 24,
@@ -134,7 +133,7 @@ class _UserPageV2State extends State<UserPageV2> {
                           //   style: GoogleFonts.poppins(
                           //     color: Colors.grey,
                           //   ),
-                          // ), mettre le display.name 
+                          // ), mettre le display.name
                         ]),
                         const SizedBox(
                           height: 24,
@@ -179,23 +178,29 @@ class _UserPageV2State extends State<UserPageV2> {
       );
 
   Widget buildAbout() => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 48),
-    child: Column(
+        padding: const EdgeInsets.symmetric(horizontal: 48),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
-            Text("A propos",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ), 
-            SizedBox(height: 2,)
-            ,Text("Changez de description lorsque vous vous connecter a votre profil !",
-            style: TextStyle(fontSize: 10,color: Colors.grey),
+            Text(
+              "A propos",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16,),
-            Text("Lorem ipsum ititit is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout The point of using Lorem Ipsum  that it has a moreorless normal distribution of letters  opposed to using Content here ",
-            style: TextStyle(fontSize: 16, height: 1.4),
+            SizedBox(
+              height: 2,
             ),
-
+            Text(
+              "Changez de description lorsque vous vous connecter a votre profil !",
+              style: TextStyle(fontSize: 10, color: Colors.grey),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Text(
+              "Lorem ipsum ititit is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout The point of using Lorem Ipsum  that it has a moreorless normal distribution of letters  opposed to using Content here ",
+              style: TextStyle(fontSize: 16, height: 1.4),
+            ),
           ],
         ),
-  );
+      );
 }

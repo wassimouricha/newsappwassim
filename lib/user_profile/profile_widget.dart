@@ -4,14 +4,14 @@ import 'editing_profile.dart';
 class ProfileWidget extends StatelessWidget {
   final String imagePath;
     final bool isEdit;
-  final VoidCallback onClicked;
+ 
 
 
   const ProfileWidget({
     Key? key,
     required this.imagePath,
     this.isEdit = false,
-    required this.onClicked,
+ 
   }) : super(key: key);
 
   @override
@@ -19,7 +19,9 @@ class ProfileWidget extends StatelessWidget {
     return Center(
         child: Stack(
       children: [
-        buildImage(),
+        GestureDetector(child: buildImage(),
+         onTap:  () => Navigator.of(context).push( MaterialPageRoute(builder: (context) => const EditProfilePage()),)
+        ),
         Positioned(
             bottom: 0,
             right: 4,
@@ -39,9 +41,7 @@ class ProfileWidget extends StatelessWidget {
           fit: BoxFit.cover,
           width: 128,
           height: 128,
-          child: InkWell(
-            onTap: onClicked,
-          ),
+          
         ),
       ),
     );

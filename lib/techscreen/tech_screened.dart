@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:newsappwassim/techscreen/modeltech.dart';
 import 'package:newsappwassim/const.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/gestures.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Readingtech extends StatelessWidget {
@@ -25,9 +24,10 @@ class Readingtech extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: getColors[1],
-        appBar: AppBar(
-          //ici je code mon app bar qui me redirige vers mon drawer
-          backgroundColor: Colors.white,
+          appBar: AppBar(
+          //ici je code mon app bar qui me redirige vers l'accueil
+          elevation: 0,
+          backgroundColor: Colors.transparent,
           automaticallyImplyLeading: false,
           title: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -44,127 +44,156 @@ class Readingtech extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Text("Wassim News App v1.2",
-                      style: GoogleFonts.poppins(fontSize: 15, color: Colors.black)),
+                  Text("WNews v1.3",
+                      style: GoogleFonts.poppins(
+                          fontSize: 15, color: Colors.white)),
                 ],
               )),
           titleSpacing: 0,
         ),
+         extendBodyBehindAppBar: true,
         body: SizedBox(
-          height: size.height,
-          width: size.width,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  width: size.width / 1.05,
-                  child: Text(
-                    model.title,
-                    style: GoogleFonts.poppins(
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      fontSize: 28,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                Container(
-                  height: size.height / 3,
-                  width: size.width / 1.05,
-                  alignment: Alignment.center,
-                  child: model.imageUrl != ""
-                      ? Image.network(
-                          model.imageUrl,
-                          fit: BoxFit.cover,
-                        )
-                      : Text(
+          width: double.maxFinite,
+          child: Stack(
+            children: [
+              //partie image
+              Positioned(
+                left: 0,
+                right: 0,
+                child: model.imageUrl != ""
+                    ? Container(
+                        width: double.maxFinite,
+                        height: 300,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(model.imageUrl),
+                                fit: BoxFit.cover)),
+                      )
+                    : SizedBox(
+                        width: double.maxFinite,
+                        height: 350,
+                        child: Text(
                           "Impossible de charger l'image",
                           style: GoogleFonts.poppins(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                ),
-                SizedBox(
-                  width: size.width / 1.05,
-                  child: Text(
-                    getTruncatedContent(model.content, 200),
-                    style: GoogleFonts.poppins(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
+                      ),
+              ),
+              //partie text
+              Positioned(
+                top: 270,
+                child: Container(
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                  width: MediaQuery.of(context).size.width,
+                  height: 500,
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30))),
+                  child: Column(children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      width: size.width / 1.05,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(model.title,
+                                style: GoogleFonts.poppins(
+                                  color: const Color.fromARGB(255, 57, 130, 173),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                )),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                 Row(
-                   
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    
-                    children: [
-                      SizedBox(
-                        width: size.width / 1.05,
-                        child: 
-                      Column( children:[
-                           Text(
-                        ("Auteur: ") + getTruncatedContent(model.author,20),
-                        style: const TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                        ),
-                      ),
-                      Text(
-                        ("Publié le ") + model.publishedAt,
-                        style: GoogleFonts.poppins(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                        ),
-                      ),
-                       ], ),),
-                     
-                    ],
-                  ),
-                    const SizedBox(height: 5,),
-                SizedBox(
-                  width: size.width / 1.05,
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(children: [
-                       TextSpan(
-                        text: "Pour lire la suite de l'article  ",
-                        style: GoogleFonts.poppins(
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      TextSpan(
-                          text: "Cliquez ici",
-                          style:  GoogleFonts.poppins(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.red,
-                            decoration: TextDecoration.underline,
+                    //auteur et date de publication
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          ("Auteur: ") + getTruncatedContent(model.author, 20),
+                          style: GoogleFonts.poppins(
+                            fontSize: 13,
+                            color: Colors.black,
                           ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () async {
-                              _launchURL();
-                            }),
-                    ]),
-                  ),
-                ),
-                const SizedBox(height: 5,),
+                        ),
+                        Text(
+                          ("Publié le ") + model.publishedAt,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    //contenu de l'article
+                    Text(
+                      getTruncatedContent(model.content, 200),
+                      style: GoogleFonts.poppins(
+                        color: Colors.black,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+            
+                      const SizedBox(height: 5),
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(children: [
+                        TextSpan(
+                          text: "Pour lire la suite de l'article  ",
+                          style: GoogleFonts.poppins(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+              
               ],
             ),
           ),
-        ),
+            Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 14),
+                      child: Column(children: [
+                        ElevatedButton(
+                            onPressed: () async {
+                              _launchURL();
+                            }, //la fonction signIn
+                            style: ElevatedButton.styleFrom(
+                              shape: const StadiumBorder(),
+                              primary: Colors.black,
+                              padding: const EdgeInsets.all(14),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const SizedBox(width: 10),
+                                Text(
+                                  "Cliquez ici",
+                                  style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                )
+                              ],
+                            )),
+                      ]),
+                    ),
+               ] ),
       ),
-    );
+    )]))));
   }
 
   String getTruncatedContent(String text, int truncatedNumber) {

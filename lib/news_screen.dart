@@ -24,7 +24,7 @@ class ReadingNews extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: getColors[1],
-        appBar: AppBar(
+         appBar: AppBar(
           //ici je code mon app bar qui me redirige vers l'accueil
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -51,6 +51,7 @@ class ReadingNews extends StatelessWidget {
               )),
           titleSpacing: 0,
         ),
+        
         extendBodyBehindAppBar: true,
         body: SizedBox(
           width: double.maxFinite,
@@ -327,6 +328,15 @@ class ReadingNews extends StatelessWidget {
                   // ),
                 ),
               ),
+              Positioned(
+                bottom: 20,
+                left: 20,
+                child: Row(
+                    children: [
+                  IconButton(onPressed: (){}, 
+                  icon: const Icon(Icons.favorite_border)),
+                    ],
+              )),
             ],
           ),
         ),
